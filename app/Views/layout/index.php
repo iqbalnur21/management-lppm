@@ -1,0 +1,42 @@
+<?= $this->extend('layout/default') ?>
+
+<?= $this->section('content') ?>
+<section class="section">
+    <div class="section-header">
+        <h1><?= $this->renderSection('title') ?></h1>
+        <div class="section-header-button">
+            <a href="<?= site_url($variable . '/new') ?>" class="btn btn-primary">Tambah</a>
+        </div>
+
+    </div>
+    <?php if (session()->getFlashdata('success')) { ?>
+        <div class="alert alert-success alert-dismissible show fade">
+            <div class="alert-body">
+                <button class="close" data-dismissible="alert">x</button>
+                <b>Success !</b>
+                <?= session()->getFlashdata('success') ?>
+            </div>
+        </div>
+    <?php } else if (session()->getFlashdata('error')) { ?>
+        <div class="alert alert-danger alert-dismissible show fade">
+            <div class="alert-body">
+                <button class="close" data-dismissible="alert">x</button>
+                <b>Error !</b>
+                <?= session()->getFlashdata('error') ?>
+            </div>
+        </div>
+    <?php } ?>
+    <div class="section-body">
+        <div class="card">
+            <div class="card-header">
+                <h4>Data <?= $title ?></h4>
+            </div>
+            <div class=" card-body table-responsive">
+                <table class="table table-striped table-md" id="datatables">
+                    <?= $this->renderSection('table') ?>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<?= $this->endSection() ?>
