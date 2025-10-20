@@ -7,12 +7,25 @@ use CodeIgniter\Model;
 class PublikasiModel extends Model
 {
     protected $table            = 'publikasi';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_publikasi';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['user_id', 'judul', 'deskripsi', 'tahun', 'status'];
+    protected $allowedFields    = [
+        'judul_artikel',
+        'jenis_publikasi',
+        'nama_publikasi',
+        'tahun',
+        'volume',
+        'nomor',
+        'halaman',
+        'link_publikasi',
+        'file_artikel',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

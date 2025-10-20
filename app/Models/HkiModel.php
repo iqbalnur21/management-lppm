@@ -7,12 +7,23 @@ use CodeIgniter\Model;
 class HkiModel extends Model
 {
     protected $table            = 'hki';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_hki';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['user_id', 'judul', 'deskripsi', 'tahun', 'status'];
+    protected $allowedFields    = [
+        'judul_ciptaan',
+        'jenis_hki',
+        'id_penelitian_terkait',
+        'nomor_pendaftaran',
+        'nomor_sertifikat',
+        'tanggal_penerimaan',
+        'file_sertifikat',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
