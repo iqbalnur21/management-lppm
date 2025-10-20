@@ -35,6 +35,7 @@ class Filters extends BaseFilters
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
         'isLoggedIn'    => \App\Filters\LoginFilter::class,
+        'isNotLoggedIn' => \App\Filters\NotLoginFilter::class,
     ];
 
     /**
@@ -108,28 +109,19 @@ class Filters extends BaseFilters
      * @var array<string, array<string, list<string>>>
      */
     public array $filters = [
-        'isLoggedIn' =>
-        [
-            'before' =>
-            [
-                '/',
-                'dashboard/*',
-                'dashboard',
-                'Hki/*',
-                'Hki',
-                'Penelitian/*',
-                'Penelitian',
-                'Pengabdian/*',
-                'Pengabdian',
-                'Prototype/*',
-                'Prototype',
-                'Publikasi/*',
-                'Publikasi',
-                'Role/*',
-                'Role',
-                'User/*',
-                'User',
-            ]
-        ],
-    ];
+    'isNotLoggedIn' => [
+        'before' => ['login', '/', 'auth/*']
+    ],
+    'isLoggedIn' => [
+        'before' => [
+            'dashboard', 'dashboard/*',
+            'pengabdian', 'pengabdian/*',
+            'penelitian', 'penelitian/*',
+            'publikasi', 'publikasi/*',
+            'hki', 'hki/*',
+            'prototype', 'prototype/*',
+            'verifikasi', 'laporan'
+        ]
+    ],
+];
 }

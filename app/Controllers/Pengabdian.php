@@ -54,10 +54,7 @@ class Pengabdian extends BaseController
     {
         $data['variable'] = $this->variable;
         $data['title'] = $this->title;
-        $data['Block'] = $this->models->findAll();
-        $data['lots'] = $this->lots->select('lots.*, buyers.name as lot_owner')
-            ->join('buyers', 'buyers.buyer_id = lots.buyer_id')
-            ->findAll();
+        
         return view($data['variable'] . '/new', $data);
     }
 

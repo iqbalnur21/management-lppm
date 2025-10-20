@@ -4,13 +4,7 @@
 <section class="section">
     <div class="section-header">
         <div class="section-header-button">
-            <?php if (url(2) == 'financial_payment') { ?>
-                <a href="<?= site_url(url(1) . '/' . $type . '/show/' . $financial_data['financial_id']) ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
-            <?php } elseif (url(1) . '/' . url(2) == 'Lot/payment' && $id) { ?>
-                <a href="<?= site_url(url(1) . '/lot/show/' . $id) ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
-            <?php } else { ?>
-                <a href="<?= site_url(url(1) . '/' . $variable) ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
-            <?php } ?>
+            <a href="<?= site_url(url(1) . '/' . $variable) ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
         </div>
         <h1>Tambah <?= $title ?></h1>
     </div>

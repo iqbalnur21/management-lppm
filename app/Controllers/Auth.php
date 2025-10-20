@@ -24,13 +24,17 @@ class Auth extends BaseController
     public function loginProcess()
     {
         helper('custom');
-        
+
         $post = $this->request->getPost();
         $query = $this->users->getWhere(['username' => $post['username']]);
         $user = $query->getRow();
         if ($user) {
             if (password_verify($post['password'], $user->password)) {
-                $params = ['user_id' => $user->user_id, 'username' => $user->username, 'role_id' => $user->role_id];
+                $params = [
+                    'user_id' => $user->id,
+                    'username' => $user->username,
+                    'role_id' => $user->role_id
+                ];
                 session()->set($params);
                 return redirect()->to(site_url('dashboard'));
             } else {

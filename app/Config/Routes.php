@@ -6,9 +6,9 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->get('/', 'Auth::index', ['filter' => 'redirectIfLoggedIn']);
-$routes->get('login', 'Auth::index', ['filter' => 'redirectIfLoggedIn']);
-$routes->post('login/process', 'Auth::loginProcess');
+$routes->get('/', 'Auth::index');
+$routes->get('login', 'Auth::index');
+$routes->post('Auth/loginProcess', 'Auth::loginProcess');
 
 $routes->group('', ['filter' => 'isLoggedIn'], static function ($routes) {
 

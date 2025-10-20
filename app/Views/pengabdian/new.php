@@ -1,10 +1,14 @@
 <?= $this->extend('layout/new') ?>
 
+<?= $this->section('title') ?>
+Formulir Tambah Pengabdian Masyarakat
+<?= $this->endSection() ?>
+
 <?= $this->section('form') ?>
-<h4>Formulir Tambah <?= $title ?></h4>
+<h4>Formulir Tambah Pengabdian Masyarakat</h4>
 <hr>
 
-<form action="<?= site_url($variable . '/create') ?>" method="post" autocomplete="off" enctype="multipart/form-data">
+<form action="<?= site_url('pengabdian') ?>" method="post" autocomplete="off" enctype="multipart/form-data">
     <?= csrf_field() ?>
 
     <div class="row">
@@ -37,6 +41,36 @@
     </div>
 
     <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="sumber_dana">Sumber Dana</label>
+                <input type="text" name="sumber_dana" id="sumber_dana" class="form-control <?= isset(session('errors')['sumber_dana']) ? 'is-invalid' : '' ?>" value="<?= old('sumber_dana') ?>">
+                <div class="invalid-feedback">
+                    <?= session('errors.sumber_dana') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="jumlah_dana">Jumlah Dana</label>
+                <input type="number" name="jumlah_dana" id="jumlah_dana" class="form-control <?= isset(session('errors')['jumlah_dana']) ? 'is-invalid' : '' ?>" value="<?= old('jumlah_dana') ?>">
+                <div class="invalid-feedback">
+                    <?= session('errors.jumlah_dana') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="tahun_pelaksanaan">Tahun Pelaksanaan</label>
+                <input type="number" name="tahun_pelaksanaan" id="tahun_pelaksanaan" class="form-control <?= isset(session('errors')['tahun_pelaksanaan']) ? 'is-invalid' : '' ?>" value="<?= old('tahun_pelaksanaan', date('Y')) ?>">
+                <div class="invalid-feedback">
+                    <?= session('errors.tahun_pelaksanaan') ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="tanggal_mulai">Tanggal Mulai</label>
@@ -58,7 +92,7 @@
     </div>
     
     <div class="form-group">
-        <label for="file_surat_tugas">Upload File Surat Tugas (PDF/DOCX)</label>
+        <label for="file_surat_tugas">Upload File Surat Tugas (PDF, DOCX)</label>
         <div class="custom-file">
             <input type="file" class="custom-file-input <?= isset(session('errors')['file_surat_tugas']) ? 'is-invalid' : '' ?>" id="file_surat_tugas" name="file_surat_tugas" onchange="$('#customFileLabel').text(this.files[0].name)">
             <label class="custom-file-label" id="customFileLabel" for="file_surat_tugas">Pilih File</label>
@@ -70,7 +104,7 @@
 
     <div>
         <button type="submit" class="btn btn-success float-right"><i class="fas fa-paper-plane"></i> Simpan Data</button>
-        <a href="<?= site_url('Pengabdian/SuratTugas') ?>" class="btn btn-secondary float-right mr-2"><i class="fas fa-arrow-left"></i> Batal</a>
+        <a href="<?= site_url('pengabdian') ?>" class="btn btn-secondary float-right mr-2"><i class="fas fa-arrow-left"></i> Batal</a>
     </div>
 </form>
 <?= $this->endSection() ?>

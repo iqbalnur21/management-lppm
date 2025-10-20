@@ -15,7 +15,10 @@
             </li>
 
             <!-- ================== MENU DOSEN ================== -->
-            <?php if (session('role_id') == 1) : // Asumsi role Dosen adalah 1 
+            <?php 
+            // var_dump(session('role_id'));
+            // die;
+            if (session('role_id') == 1) : // Asumsi role Dosen adalah 1 
             ?>
                 <li class="menu-header">Kegiatan Dosen</li>
                 <li class="nav-item dropdown <?= in_array($uri->getSegment(1), ['penelitian', 'publikasi', 'hki', 'prototype']) ? 'active' : '' ?>">

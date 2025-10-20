@@ -1,4 +1,5 @@
 <?php
+
 use CodeIgniter\Database\Config;
 
 function dateFormat($timestamp)
@@ -32,4 +33,15 @@ function dateFormat($timestamp)
     $formattedDateTime = $dayOfWeek . ', ' . $formattedDate;
 
     echo $formattedDateTime; // Output: "Selasa, 21 Maret 2023"
+}
+
+function url($url_index)
+{
+    $isLive = strpos(current_url(), 'balrafa.tech') !== false;
+    $url_explode = explode('/', $_SERVER['REQUEST_URI']);
+    if ($isLive) {
+        return $url_explode[$url_index + 1];
+    } else {
+        return $url_explode[$url_index];
+    }
 }
