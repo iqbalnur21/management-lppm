@@ -35,6 +35,11 @@ function dateFormat($timestamp)
     echo $formattedDateTime; // Output: "Selasa, 21 Maret 2023"
 }
 
+function currencyFormat($amount)
+{
+    echo $amount ? 'Rp ' . number_format($amount, 0, ',', '.') : "";
+}
+
 function url($url_index)
 {
     $isLive = strpos(current_url(), 'balrafa.tech') !== false;

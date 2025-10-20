@@ -7,12 +7,25 @@ use CodeIgniter\Model;
 class PengabdianModel extends Model
 {
     protected $table            = 'pengabdian';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_pengabdian';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['user_id', 'judul', 'deskripsi', 'tahun', 'status'];
+    protected $allowedFields    = [
+        'nomor_surat',
+        'judul_pengabdian',
+        'lokasi_pengabdian',
+        'sumber_dana',
+        'jumlah_dana',
+        'tahun_pelaksanaan',
+        'tanggal_mulai',
+        'tanggal_selesai',
+        'file_surat_tugas',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

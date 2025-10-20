@@ -8,11 +8,7 @@
 <section class="section">
     <div class="section-header">
         <div class="section-header-button">
-            <?php if (url(2) == 'financial_payment') { ?>
-                <a href="<?= site_url(url(1) . '/' . $type . '/show/' . $data['financial_id']) ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
-            <?php } else { ?>
-                <a href="<?= site_url(url(1) . '/' . $variable) ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
-            <?php } ?>
+            <a href="<?= site_url($variable) ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
         </div>
         <h1>Update <?= $this->renderSection('title') ?></h1>
     </div>

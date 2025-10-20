@@ -18,7 +18,7 @@ Dashboard
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Kavling</h4>
+                            <h4>Total Mahasiswa</h4>
                         </div>
                         <div class="card-body">
                             <?= $total_publikasi ?>
@@ -33,7 +33,7 @@ Dashboard
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Sisa Kavling</h4>
+                            <h4>Total Mahasiswa</h4>
                         </div>
                         <div class="card-body">
                             <?= $total_publikasi ?>
@@ -48,7 +48,7 @@ Dashboard
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Kavling on Running</h4>
+                            <h4>Total Mahasiswa</h4>
                         </div>
                         <div class="card-body">
                             <?= $total_publikasi ?>
@@ -63,7 +63,7 @@ Dashboard
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Kavling Terjual</h4>
+                            <h4>Total Mahasiswa</h4>
                         </div>
                         <div class="card-body">
                             <?= $total_publikasi ?>

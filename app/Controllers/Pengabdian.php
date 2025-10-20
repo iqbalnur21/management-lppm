@@ -71,14 +71,14 @@ class Pengabdian extends BaseController
             $errors = $this->validation->getErrors();
             return redirect()->back()->withInput()->with('errors', $errors);
         }
-        $file = $this->request->getFile('certificate');
+        $file = $this->request->getFile('file_surat_tugas');
         if ($file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
-            $file->move(ROOTPATH . env('app.assetsPath') . '/upload/block', $newName);
-            $data['certificate'] = $newName;
+            $file->move(ROOTPATH . env('app.assetsPath') . '/upload/pengabdian', $newName);
+            $data['file_surat_tugas'] = $newName;
         }
         $this->models->insert($data);
-        return redirect()->to(site_url('Lot/' . $this->variable))->with('success', "Data $this->title Berhasil Ditambah");
+        return redirect()->to(site_url($this->variable))->with('success', "Data $this->title Berhasil Ditambah");
     }
     /**
      * Present a view to edit the properties of a specific resource object
@@ -91,7 +91,7 @@ class Pengabdian extends BaseController
     {
         $data['title'] = $this->title;
         $data['variable'] = $this->variable;
-        $data['data'] = $this->models->where(['blocks.block_id' => $id])->first();
+        $data['data'] = $this->models->where(['pengabdian.id_pengabdian' => $id])->first();
         return view($data['variable'] . '/edit', $data);
     }
 
@@ -110,17 +110,17 @@ class Pengabdian extends BaseController
             $errors = $this->validation->getErrors();
             return redirect()->back()->withInput()->with('errors', $errors);
         }
-        $file = $this->request->getFile('certificate');
+        $file = $this->request->getFile('file_surat_tugas');
         if ($file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
-            $file->move(ROOTPATH . env('app.assetsPath') . '/upload/block', $newName);
-            $data['certificate'] = $newName;
+            $file->move(ROOTPATH . env('app.assetsPath') . '/upload/pengabdian', $newName);
+            $data['file_surat_tugas'] = $newName;
         } else {
-            $blockDetail = $this->models->where(['block_id' => $id])->first();
-            $data['certificate'] = $blockDetail['certificate'];
+            $blockDetail = $this->models->where(['id_pengabdian' => $id])->first();
+            $data['file_surat_tugas'] = $blockDetail['file_surat_tugas'];
         }
         $this->models->update($id, $data);
-        return redirect()->to(site_url('Lot/' . $this->variable))->with('success', "Data $this->title Berhasil Diupdate");
+        return redirect()->to(site_url($this->variable))->with('success', "Data $this->title Berhasil Diupdate");
     }
 
     /**
@@ -133,7 +133,7 @@ class Pengabdian extends BaseController
     public function remove($id = null)
     {
         $this->models->delete($id);
-        return redirect()->to(site_url('Lot/' . $this->variable))->with('success', 'Data Berhasil Dihapus');
+        return redirect()->to(site_url($this->variable))->with('success', 'Data Berhasil Dihapus');
     }
 
     /**
@@ -150,7 +150,7 @@ class Pengabdian extends BaseController
         } else {
             $this->models->purgeDeleted();
         }
-        return redirect()->to(site_url('Lot/' . $this->variable . '/trash'))->with('success', 'Data Berhasil Dihapus');
+        return redirect()->to(site_url($this->variable . '/trash'))->with('success', 'Data Berhasil Dihapus');
     }
     public function trash()
     {
@@ -164,59 +164,65 @@ class Pengabdian extends BaseController
         if ($id != null) {
             $this->models
                 ->set('deleted_at', null, true)
-                ->where(['block_id' => $id])
+                ->where(['id_pengabdian' => $id])
                 ->update();
-            return redirect()->to(site_url('Lot/' . $this->variable))->with('success', 'Data Berhasil Direstore');
+            return redirect()->to(site_url($this->variable))->with('success', 'Data Berhasil Direstore');
         } else {
             $this->models
                 ->set('deleted_at', null, true)
                 ->where('deleted_at is NOT NULL', NULL, FALSE)
                 ->update();
         }
-        return redirect()->to(site_url('Lot/' . $this->variable))->with('success', 'Semua Data Berhasil Direstore');
+        return redirect()->to(site_url($this->variable))->with('success', 'Semua Data Berhasil Direstore');
     }
     public array $rules = [
-        'name' => [
+        'nomor_surat' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Nama Blok Tidak Boleh Kosong',
+                'required' => 'Nomor Surat Tidak Boleh Kosong',
             ]
         ],
-        'land_size' => [
+        'judul_pengabdian' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Luas Blok Tidak Boleh Kosong',
+                'required' => 'Judul Pengabdian Tidak Boleh Kosong',
             ]
         ],
-        'total_lot' => [
+        'lokasi_pengabdian' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Jumlah Kavling Tidak Boleh Kosong',
+                'required' => 'Lokasi Pengabdian Tidak Boleh Kosong',
             ]
         ],
-        'northern_boundary' => [
+        'sumber_dana' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Batas Utara Tidak Boleh Kosong',
+                'required' => 'Sumber Dana Tidak Boleh Kosong',
             ]
         ],
-        'southern_boundary' => [
+        'jumlah_dana' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Batas Selatan Tidak Boleh Kosong',
+                'required' => 'Jumlah Dana Tidak Boleh Kosong',
             ]
         ],
-        'eastern_boundary' => [
+        'tahun_pelaksanaan' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Batas Timur Tidak Boleh Kosong',
+                'required' => 'Tahun Pelaksanaan Tidak Boleh Kosong',
             ]
         ],
-        'western_boundary' => [
+        'tanggal_mulai' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Batas Barat Tidak Boleh Kosong',
+                'required' => 'Tanggal Mulai Tidak Boleh Kosong',
             ]
-        ]
+        ],
+        'tanggal_selesai' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Tanggal Selesai Tidak Boleh Kosong',
+            ]
+        ],
     ];
 }
