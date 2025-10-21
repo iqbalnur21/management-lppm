@@ -175,6 +175,12 @@ class Pengabdian extends BaseController
         }
         return redirect()->to(site_url($this->variable))->with('success', 'Semua Data Berhasil Direstore');
     }
+    public function updateStatus($id)
+    {
+        $status = $this->request->getPost('status') ?? 1;
+        $this->models->update($id, ['status' => $status]);
+        return $this->response->setJSON(['success' => true]);
+    }
     public array $rules = [
         'nomor_surat' => [
             'rules' => 'required',

@@ -52,7 +52,7 @@ class Data extends Seeder
             ], // ID: 3
             [
                 'role_id'  => 2, // staf_lppm
-                'name'     => 'Admin LPPM',
+                'name'     => 'Staf LPPM',
                 'username' => 'staf',
                 'password' => password_hash('123456', PASSWORD_DEFAULT),
                 'created_at' => $time->now(),
