@@ -27,27 +27,46 @@ Daftar Hak Kekayaan Intelektual (HKI)
                         ?></td> -->
             <td><?= esc($value['jenis_hki']) ?></td>
             <td><?= esc($value['nomor_pendaftaran']) ?></td>
-            <td class="text-center">
-                <?php
-                $status_class = '';
-                switch ($value['status']) {
-                    case 'diverifikasi':
-                        $status_class = 'badge-primary';
-                        break;
-                    case 'selesai':
-                        $status_class = 'badge-success';
-                        break;
-                    case 'revisi':
-                        $status_class = 'badge-warning';
-                        break;
-                    default: // menunggu
-                        $status_class = 'badge-secondary';
-                        break;
-                }
-                ?>
-                <span class="badge <?= $status_class ?>"><?= ucfirst(esc($value['status'])) ?></span>
-            </td>
             <?php if (session('role_id') == 1) : ?>
+                <td class="text-center">
+                    <?php
+                    $status_class = '';
+                    switch ($value['status']) {
+                        case 'diverifikasi':
+                            $status_class = 'badge-primary';
+                            break;
+                        case 'selesai':
+                            $status_class = 'badge-success';
+                            break;
+                        case 'revisi':
+                            $status_class = 'badge-warning';
+                            break;
+                        default: // menunggu
+                            $status_class = 'badge-secondary';
+                            break;
+                    }
+                    ?>
+                    <span class="badge <?= $status_class ?>"><?= ucfirst(esc($value['status'])) ?></span>
+                </td>
+            <?php else : ?>
+                <td class="text-center">
+                    <?php
+                    $options = [
+                        'diverifikasi' => 'Diverifikasi',
+                        'selesai' => 'Selesai',
+                        'revisi' => 'Revisi',
+                        'menunggu' => 'Menunggu'
+                    ];
+                    ?>
+                    <select name="status" data-type="hki" data-id="<?= $value['id_hki'] ?>" data-url="/hki/updateStatus/<?= $value['id_hki'] ?>" class="form-control confirm-btn">
+                        <?php foreach ($options as $option_value => $option_text) : ?>
+                            <option value="<?= $option_value ?>" <?= $option_value == $value['status'] ? 'selected' : '' ?>>
+                                <?= esc($option_text) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                <?php endif; ?>
+                <?php if (session('role_id') == 1) : ?>
                 <td class="text-center" style="width: 200px;">
                     <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
                         <a href="<?= site_url('hki/' . $value['id_hki'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>

@@ -37,4 +37,6 @@ $routes->group('', ['filter' => 'isLoggedIn'], static function ($routes) {
     // namun controllernya bisa menampilkan data yang berbeda.
     // $routes->get('laporan', 'Laporan::rekapitulasi');
 
+    $routes->post('hki/updateStatus/(:num)', 'Hki::updateStatus/$1');
+    $routes->post('penelitian/updateStatus/(:num)', 'Penelitian::updateStatus/$1');
 });

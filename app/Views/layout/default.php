@@ -24,7 +24,12 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>/template_stisla/node_modules/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="<?= base_url() ?>/template_stisla/node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/template_stisla/custom_package/datatables.css">
+
+    <!-- <link rel="stylesheet" href="<?= base_url() ?>/template_stisla/custom_package/datatables.css"> -->
+    <link rel="stylesheet" href="https://themewagon.github.io/stisla-1/assets/modules/datatables/datatables.min.css">
+    <link rel="stylesheet" href="https://themewagon.github.io/stisla-1/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://themewagon.github.io/stisla-1/assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css">
+
     <link rel="stylesheet" href="<?= base_url() ?>/template_stisla/node_modules/izitoast/dist/css/iziToast.min.css">
 
     <!-- Start GA -->
@@ -85,14 +90,6 @@
             <div class="main-content">
                 <?= $this->renderSection('content') ?>
             </div>
-            <footer class="main-footer">
-                <div class="footer-left">
-                    Copyright &copy; 2025 <div class="bullet"></div> Design By <a href="https://balrafa.tech/">Balrafa Tech</a>
-                </div>
-                <div class="footer-right">
-
-                </div>
-            </footer>
         </div>
     </div>
 
@@ -124,7 +121,11 @@
 
     <script src="<?= base_url() ?>/template_stisla/node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script src="<?= base_url() ?>/template_stisla/node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-    <script src="<?= base_url() ?>/template_stisla/custom_package/datatables.js"></script>
+
+    <script src="https://themewagon.github.io/stisla-1/assets/modules/datatables/datatables.min.js"></script>
+    <script src="https://themewagon.github.io/stisla-1/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://themewagon.github.io/stisla-1/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+    <!-- <script src="<?= base_url() ?>/template_stisla/custom_package/datatables.js"></script> -->
 
     <script src="<?= base_url("/template_stisla/node_modules/cleave.js/dist/cleave.min.js") ?>"></script>
     <script src="<?= base_url("/template_stisla/node_modules/cleave.js/dist/addons/cleave-phone.us.js") ?>"></script>
@@ -133,6 +134,10 @@
 
     <script src="<?= base_url() ?>/template_stisla/assets/js/page/forms-advanced-forms.js"></script>
 
+    <!-- ============================================================= -->
+    <!--  JAVASCRIPT UNTUK BALANCE-CHART & SALES-CHART -->
+    <!-- ============================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php if (!empty($toasts)): ?>
         <script>
             <?php foreach ($toasts as $toast): ?>

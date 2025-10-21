@@ -1,20 +1,20 @@
 <?= $this->extend('layout/edit') ?>
 
 <?= $this->section('title') ?>
-Edit Data Penelitian: <?= esc($penelitian['judul_penelitian']) ?>
+Edit Data Penelitian: <?= esc($data['judul_penelitian']) ?>
 <?= $this->endSection() ?>
 
 <?= $this->section('form') ?>
 <h4>Formulir Edit Data Penelitian</h4>
 <hr>
 
-<form action="<?= site_url('penelitian/' . $penelitian['id_penelitian']) ?>" method="post" autocomplete="off" enctype="multipart/form-data">
+<form action="<?= site_url('penelitian/' . $data['id_penelitian']) ?>" method="post" autocomplete="off" enctype="multipart/form-data">
     <?= csrf_field() ?>
     <input type="hidden" name="_method" value="PUT">
 
     <div class="form-group">
         <label for="judul_penelitian">Judul Penelitian</label>
-        <input type="text" name="judul_penelitian" id="judul_penelitian" class="form-control <?= isset(session('errors')['judul_penelitian']) ? 'is-invalid' : '' ?>" value="<?= old('judul_penelitian', $penelitian['judul_penelitian']) ?>" autofocus>
+        <input type="text" name="judul_penelitian" id="judul_penelitian" class="form-control <?= isset(session('errors')['judul_penelitian']) ? 'is-invalid' : '' ?>" value="<?= old('judul_penelitian', $data['judul_penelitian']) ?>" autofocus>
         <div class="invalid-feedback">
             <?= session('errors.judul_penelitian') ?>
         </div>
@@ -24,7 +24,7 @@ Edit Data Penelitian: <?= esc($penelitian['judul_penelitian']) ?>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="skema_penelitian">Skema Penelitian</label>
-                <input type="text" name="skema_penelitian" id="skema_penelitian" class="form-control <?= isset(session('errors')['skema_penelitian']) ? 'is-invalid' : '' ?>" value="<?= old('skema_penelitian', $penelitian['skema_penelitian']) ?>">
+                <input type="text" name="skema_penelitian" id="skema_penelitian" class="form-control <?= isset(session('errors')['skema_penelitian']) ? 'is-invalid' : '' ?>" value="<?= old('skema_penelitian', $data['skema_penelitian']) ?>">
                 <div class="invalid-feedback">
                     <?= session('errors.skema_penelitian') ?>
                 </div>
@@ -33,7 +33,7 @@ Edit Data Penelitian: <?= esc($penelitian['judul_penelitian']) ?>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="nomor_surat">Nomor Surat Tugas</label>
-                <input type="text" name="nomor_surat" id="nomor_surat" class="form-control <?= isset(session('errors')['nomor_surat']) ? 'is-invalid' : '' ?>" value="<?= old('nomor_surat', $penelitian['nomor_surat']) ?>">
+                <input type="text" name="nomor_surat" id="nomor_surat" class="form-control <?= isset(session('errors')['nomor_surat']) ? 'is-invalid' : '' ?>" value="<?= old('nomor_surat', $data['nomor_surat']) ?>">
                 <div class="invalid-feedback">
                     <?= session('errors.nomor_surat') ?>
                 </div>
@@ -45,7 +45,7 @@ Edit Data Penelitian: <?= esc($penelitian['judul_penelitian']) ?>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="sumber_dana">Sumber Dana</label>
-                <input type="text" name="sumber_dana" id="sumber_dana" class="form-control <?= isset(session('errors')['sumber_dana']) ? 'is-invalid' : '' ?>" value="<?= old('sumber_dana', $penelitian['sumber_dana']) ?>">
+                <input type="text" name="sumber_dana" id="sumber_dana" class="form-control <?= isset(session('errors')['sumber_dana']) ? 'is-invalid' : '' ?>" value="<?= old('sumber_dana', $data['sumber_dana']) ?>">
                 <div class="invalid-feedback">
                     <?= session('errors.sumber_dana') ?>
                 </div>
@@ -54,7 +54,7 @@ Edit Data Penelitian: <?= esc($penelitian['judul_penelitian']) ?>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="jumlah_dana">Jumlah Dana</label>
-                <input type="number" name="jumlah_dana" id="jumlah_dana" class="form-control <?= isset(session('errors')['jumlah_dana']) ? 'is-invalid' : '' ?>" value="<?= old('jumlah_dana', $penelitian['jumlah_dana']) ?>">
+                <input type="number" name="jumlah_dana" id="jumlah_dana" class="form-control <?= isset(session('errors')['jumlah_dana']) ? 'is-invalid' : '' ?>" value="<?= old('jumlah_dana', $data['jumlah_dana']) ?>">
                 <div class="invalid-feedback">
                     <?= session('errors.jumlah_dana') ?>
                 </div>
@@ -63,7 +63,7 @@ Edit Data Penelitian: <?= esc($penelitian['judul_penelitian']) ?>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="tahun_penelitian">Tahun Penelitian</label>
-                <input type="number" name="tahun_penelitian" id="tahun_penelitian" class="form-control <?= isset(session('errors')['tahun_penelitian']) ? 'is-invalid' : '' ?>" value="<?= old('tahun_penelitian', $penelitian['tahun_penelitian']) ?>">
+                <input type="number" name="tahun_penelitian" id="tahun_penelitian" class="form-control <?= isset(session('errors')['tahun_penelitian']) ? 'is-invalid' : '' ?>" value="<?= old('tahun_penelitian', $data['tahun_penelitian']) ?>">
                 <div class="invalid-feedback">
                     <?= session('errors.tahun_penelitian') ?>
                 </div>
@@ -75,9 +75,9 @@ Edit Data Penelitian: <?= esc($penelitian['judul_penelitian']) ?>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="file_surat_tugas">Upload File Surat Tugas Baru (PDF, DOCX)</label>
-                <?php if (!empty($penelitian['file_surat_tugas'])) : ?>
+                <?php if (!empty($data['file_surat_tugas'])) : ?>
                     <p class="mt-1">
-                        <small>File saat ini: <a href="<?= base_url('upload/penelitian/' . $penelitian['file_surat_tugas']) ?>" target="_blank"><?= esc($penelitian['file_surat_tugas']) ?></a></small>
+                        <small>File saat ini: <a href="<?= base_url('upload/penelitian/' . $data['file_surat_tugas']) ?>" target="_blank"><?= esc($data['file_surat_tugas']) ?></a></small>
                     </p>
                 <?php endif; ?>
                 <div class="custom-file">
@@ -92,9 +92,9 @@ Edit Data Penelitian: <?= esc($penelitian['judul_penelitian']) ?>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="file_proposal">Upload File Proposal Baru (PDF, DOCX)</label>
-                 <?php if (!empty($penelitian['file_proposal'])) : ?>
+                 <?php if (!empty($data['file_proposal'])) : ?>
                     <p class="mt-1">
-                        <small>File saat ini: <a href="<?= base_url('upload/penelitian/' . $penelitian['file_proposal']) ?>" target="_blank"><?= esc($penelitian['file_proposal']) ?></a></small>
+                        <small>File saat ini: <a href="<?= base_url('upload/penelitian/' . $data['file_proposal']) ?>" target="_blank"><?= esc($data['file_proposal']) ?></a></small>
                     </p>
                 <?php endif; ?>
                 <div class="custom-file">

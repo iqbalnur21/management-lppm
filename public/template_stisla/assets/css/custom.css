@@ -86,3 +86,7 @@ div::-webkit-scrollbar-button {
 .admin-chord-box option {
   text-align: center;
 }
+
+.table td, .table th {
+  vertical-align: middle;
+}

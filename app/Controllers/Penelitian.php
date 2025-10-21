@@ -54,7 +54,7 @@ class Penelitian extends BaseController
     {
         $data['variable'] = $this->variable;
         $data['title'] = $this->title;
-        
+
         return view($data['variable'] . '/new', $data);
     }
 
@@ -97,7 +97,7 @@ class Penelitian extends BaseController
     {
         $data['title'] = $this->title;
         $data['variable'] = $this->variable;
-        $data['data'] = $this->models->where(['penelitian.id_pengabdian' => $id])->first();
+        $data['data'] = $this->models->where(['penelitian.id_penelitian' => $id])->first();
         return view($data['variable'] . '/edit', $data);
     }
 
@@ -123,7 +123,7 @@ class Penelitian extends BaseController
             $fileSuratTugas->move(ROOTPATH . env('app.assetsPath') . '/upload/penelitian/surat_tugas', $newNameSuratTugas);
             $data['file_surat_tugas'] = $newNameSuratTugas;
         } else {
-            $blockDetail = $this->models->where(['id_pengabdian' => $id])->first();
+            $blockDetail = $this->models->where(['id_penelitian' => $id])->first();
             $data['file_surat_tugas'] = $blockDetail['file_surat_tugas'];
         }
         if ($fileProposal->isValid() && !$fileProposal->hasMoved()) {
@@ -131,7 +131,7 @@ class Penelitian extends BaseController
             $fileProposal->move(ROOTPATH . env('app.assetsPath') . '/upload/penelitian/proposal', $newNameProposal);
             $data['file_proposal'] = $newNameProposal;
         } else {
-            $blockDetail = $this->models->where(['id_pengabdian' => $id])->first();
+            $blockDetail = $this->models->where(['id_penelitian' => $id])->first();
             $data['file_proposal'] = $blockDetail['file_proposal'];
         }
         $this->models->update($id, $data);
@@ -179,7 +179,7 @@ class Penelitian extends BaseController
         if ($id != null) {
             $this->models
                 ->set('deleted_at', null, true)
-                ->where(['id_pengabdian' => $id])
+                ->where(['id_penelitian' => $id])
                 ->update();
             return redirect()->to(site_url($this->variable))->with('success', 'Data Berhasil Direstore');
         } else {
@@ -189,6 +189,13 @@ class Penelitian extends BaseController
                 ->update();
         }
         return redirect()->to(site_url($this->variable))->with('success', 'Semua Data Berhasil Direstore');
+    }
+
+    public function updateStatus($id)
+    {
+        $status = $this->request->getPost('status') ?? 1;
+        $this->models->update($id, ['status' => $status]);
+        return $this->response->setJSON(['success' => true]);
     }
     public array $rules = [
         'judul_penelitian' => [

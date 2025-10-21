@@ -25,7 +25,27 @@ $("ul.sidebar-menu li a").each(function () {
 });
 
 $(document).ready(function () {
-  $("#datatables").DataTable({});
+  $("#datatables").DataTable({
+    dom: "Bfrtip",
+		buttons: [
+			{
+				extend: "pdf",
+				text: "PDF",
+        className: "btn-primary",
+			},
+			{
+				extend: "excel",
+				text: "EXCEL",
+        className: "btn-primary",
+			},
+			{
+				extend: "print",
+				text: "PRINT",
+				pageSize: "A4",
+        className: "btn-primary",
+			},
+		],
+  });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -152,4 +172,32 @@ document.querySelectorAll(".add-element").forEach((button) => {
       newInput.value = marginLeft;
     });
   });
+});
+// Reusable SweetAlert confirmation function
+function confirmAction(dataType, dataId, actionUrl, $select) {
+  const confirmMessage = `Anda Yakin ingin merubah status data ${dataType} dengan ID ${dataId}?`;
+  if (confirm(confirmMessage)) {
+    // Perform AJAX request to CodeIgniter controller
+    $.ajax({
+      url: actionUrl, // Example: /hki/updateStatus/1
+      type: "POST",
+      data: { id: dataId, type: dataType, status: $select.val() },
+      success: function (response) {
+        location.reload(); // Optional: reload page or update DOM
+      },
+      error: function () {
+        alert("Error! Terjadi kesalahan.");
+      },
+    });
+  } else {
+    alert("Perubahan dibatalkan.");
+  }
+}
+
+$(".confirm-btn").on("change", function () {
+  const $select = $(this);
+  const dataType = $(this).data("type");
+  const dataId = $(this).data("id");
+  const actionUrl = $(this).data("url");
+  confirmAction(dataType, dataId, actionUrl, $select);
 });

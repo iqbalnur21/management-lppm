@@ -18,6 +18,7 @@ class HkiModel extends Model
         'id_penelitian_terkait',
         'nomor_pendaftaran',
         'nomor_sertifikat',
+        'status',
         'tanggal_penerimaan',
         'file_sertifikat',
         'created_at',

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class PenelitianModel extends Model
 {
     protected $table            = 'penelitian';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_penelitian';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
@@ -18,6 +18,7 @@ class PenelitianModel extends Model
         'nomor_surat',
         'sumber_dana',
         'jumlah_dana',
+        'status',
         'tahun_penelitian',
         'file_surat_tugas',
         'file_proposal',
