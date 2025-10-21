@@ -8,12 +8,14 @@ Daftar Prototype
 <thead>
     <tr>
         <th>No</th>
-        <th class="action-column text-center">Aksi</th>
         <th>Nama Prototype</th>
         <th>Tahun Pembuatan</th>
         <th>Deskripsi</th>
         <th>Link Video Demo</th>
         <th>File Dokumentasi</th>
+        <?php if (session('role_id') == 1) : ?>
+            <th class="action-column text-center">Aksi</th>
+        <?php endif; ?>
     </tr>
 </thead>
 <tbody>
@@ -25,18 +27,18 @@ Daftar Prototype
             <td><?= esc($value['deskripsi']) ?></td>
             <td><?= esc($value['link_video_demo']) ?></td>
             <td><?= esc($value['file_dokumentasi']) ?></td>
-            <td class="text-center" style="width: 150px;">
-                <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
+            <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
+                <td class="text-center" style="width: 150px;">
                     <?php if (session('role_id') == 1) : ?>
                         <a href="<?= site_url('prototype/' . $value['id_prototype'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                        <form action="<?= site_url('prototype/' . $value['id_prototype']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                            <?= csrf_field() ?>
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        </form>
                     <?php endif; ?>
-                    <form action="<?= site_url('prototype/' . $value['id_prototype']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                        <?= csrf_field() ?>
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                    </form>
-                <?php endif; ?>
-            </td>
+                </td>
+            <?php endif; ?>
         </tr>
     <?php endforeach ?>
 </tbody>

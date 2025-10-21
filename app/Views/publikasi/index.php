@@ -13,7 +13,9 @@ Daftar Publikasi Ilmiah
         <th>Jenis Publikasi</th>
         <th>Tahun</th>
         <th class="text-center">Status</th>
-        <th class="action-column text-center">Aksi</th>
+        <?php if (session('role_id') == 1) : ?>
+            <th class="action-column text-center">Aksi</th>
+        <?php endif; ?>
     </tr>
 </thead>
 <tbody>
@@ -45,18 +47,18 @@ Daftar Publikasi Ilmiah
                 ?>
                 <span class="badge <?= $status_class ?>"><?= ucfirst(esc($value['status'])) ?></span>
             </td>
-            <td class="text-center" style="width: 200px;">
-                <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
-                    <?php if (session('role_id') == 1) : ?>
+            <?php if (session('role_id') == 1) : ?>
+                <td class="text-center" style="width: 200px;">
+                    <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
                         <a href="<?= site_url('publikasi/' . $value['id_publikasi'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                        <form action="<?= site_url('publikasi/' . $value['id_publikasi']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                            <?= csrf_field() ?>
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        </form>
                     <?php endif; ?>
-                    <form action="<?= site_url('publikasi/' . $value['id_publikasi']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                        <?= csrf_field() ?>
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                    </form>
-                <?php endif; ?>
-            </td>
+                </td>
+            <?php endif; ?>
         </tr>
     <?php endforeach ?>
 </tbody>
