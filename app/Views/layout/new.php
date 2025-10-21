@@ -2,12 +2,12 @@
 
 <?= $this->section('content') ?>
 <section class="section">
-    <div class="section-header">
-        <div class="section-header-button">
-            <a href="<?= site_url(url(1) . '/' . $variable) ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
+        <div class="section-header">
+            <div class="section-header-button">
+                <a href="<?= site_url(url(1) . '/' . $variable) ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
+            </div>
+            <h1>Tambah <?= $title ?></h1>
         </div>
-        <h1>Tambah <?= $title ?></h1>
-    </div>
     <div class="section-body">
         <div class="card">
             <!-- <div class="card-header">

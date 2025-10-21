@@ -25,17 +25,6 @@ Daftar Pengabdian Masyarakat
     <?php foreach ($data as $key => $value) : ?>
         <tr>
             <td><?= $key + 1 ?></td>
-            <td class="text-center">
-                <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
-                    <a href="<?= site_url('pengabdian/' . $value['id_pengabdian'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-
-                    <form action="<?= site_url('pengabdian/delete/' . $value['id_pengabdian']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                        <?= csrf_field() ?>
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                    </form>
-                <?php endif; ?>
-            </td>
             <td><?= $value['nomor_surat'] ?></td>
             <td><?= $value['judul_pengabdian'] ?></td>
             <td><?= $value['lokasi_pengabdian'] ?></td>
@@ -67,6 +56,18 @@ Daftar Pengabdian Masyarakat
                 }
                 ?>
                 <span class="badge <?= $status_class ?>"><?= ucfirst($value['status']) ?></span>
+            </td>
+            <td class="text-center">
+                <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
+                    <?php if (session('role_id') == 1) : ?>
+                        <a href="<?= site_url('pengabdian/' . $value['id_pengabdian'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                    <?php endif; ?>
+                    <form action="<?= site_url('pengabdian/delete/' . $value['id_pengabdian']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                    </form>
+                <?php endif; ?>
             </td>
         </tr>
     <?php endforeach ?>

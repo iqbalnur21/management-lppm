@@ -13,12 +13,8 @@
             <li class="<?= $uri->getSegment(1) == 'dashboard' ? 'active' : '' ?>">
                 <a class="nav-link" href="<?= site_url('dashboard'); ?>"><i class="fas fa-fire"></i> <span>Beranda</span></a>
             </li>
-
-            <!-- ================== MENU DOSEN ================== -->
-            <?php 
-            if (session('role_id') == 1) : // Asumsi role Dosen adalah 1 
-            ?>
-                <li class="menu-header">Kegiatan Dosen</li>
+            <?php if (session('role_id') == 1 || session('role_id') == 2) : ?>
+                <li class="menu-header">Menu</li>
                 <li class="nav-item dropdown <?= in_array($uri->getSegment(1), ['penelitian', 'publikasi', 'hki', 'prototype']) ? 'active' : '' ?>">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-flask"></i><span>Penelitian</span></a>
                     <ul class="dropdown-menu">
@@ -30,27 +26,6 @@
                 </li>
                 <li class="<?= $uri->getSegment(1) == 'pengabdian' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?= site_url('pengabdian') ?>"><i class="fas fa-hands-helping"></i> <span>Pengabdian</span></a>
-                </li>
-            <?php endif; ?>
-
-            <!-- ================== MENU STAF LPPM ================== -->
-            <?php if (session('role_id') == 2) : // Asumsi role Staf LPPM adalah 2 
-            ?>
-                <li class="menu-header">Manajemen LPPM</li>
-                <li class="<?= $uri->getSegment(1) == 'verifikasi' ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?= site_url('verifikasi') ?>"><i class="fas fa-check-double"></i> <span>Verifikasi Data</span></a>
-                </li>
-                <li class="<?= $uri->getSegment(1) == 'laporan' ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?= site_url('laporan') ?>"><i class="fas fa-chart-bar"></i> <span>Laporan Kegiatan</span></a>
-                </li>
-            <?php endif; ?>
-
-            <!-- ================== MENU KEPALA LPPM ================== -->
-            <?php if (session('role_id') == 3) : // Asumsi role Kepala LPPM adalah 3 
-            ?>
-                <li class="menu-header">Laporan</li>
-                <li class="<?= $uri->getSegment(1) == 'laporan' ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?= site_url('laporan') ?>"><i class="fas fa-chart-pie"></i> <span>Rekap Laporan</span></a>
                 </li>
             <?php endif; ?>
         </ul>

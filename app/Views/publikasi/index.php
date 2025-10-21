@@ -21,7 +21,8 @@ Daftar Publikasi Ilmiah
         <tr>
             <td><?= $key + 1 ?></td>
             <td><?= esc($value['judul_artikel']) ?></td>
-            <!-- <td><?//= esc($value['nama_lengkap']) ?></td> -->
+            <!-- <td><? //= esc($value['nama_lengkap']) 
+                        ?></td> -->
             <td><?= esc($value['jenis_publikasi']) ?></td>
             <td><?= esc($value['tahun']) ?></td>
             <td class="text-center">
@@ -46,7 +47,9 @@ Daftar Publikasi Ilmiah
             </td>
             <td class="text-center" style="width: 200px;">
                 <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
-                    <a href="<?= site_url('publikasi/' . $value['id_publikasi'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                    <?php if (session('role_id') == 1) : ?>
+                        <a href="<?= site_url('publikasi/' . $value['id_publikasi'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                    <?php endif; ?>
                     <form action="<?= site_url('publikasi/' . $value['id_publikasi']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="DELETE">

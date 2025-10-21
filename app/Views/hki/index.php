@@ -47,8 +47,9 @@ Daftar Hak Kekayaan Intelektual (HKI)
             </td>
             <td class="text-center" style="width: 200px;">
                 <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
-                    <a href="<?= site_url('hki/' . $value['id_hki'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-
+                    <?php if (session('role_id') == 1) : ?>
+                        <a href="<?= site_url('hki/' . $value['id_hki'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                    <?php endif; ?>
                     <form action="<?= site_url('hki/' . $value['id_hki']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="DELETE">

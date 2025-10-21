@@ -2,13 +2,14 @@
 
 <?= $this->section('content') ?>
 <section class="section">
-    <div class="section-header">
-        <h1><?= $this->renderSection('title') ?></h1>
-        <div class="section-header-button">
-            <a href="<?= site_url($variable . '/new') ?>" class="btn btn-primary">Tambah</a>
+    <?php if (session('role_id') == 1) : ?>
+        <div class="section-header">
+            <h1><?= $this->renderSection('title') ?></h1>
+            <div class="section-header-button">
+                <a href="<?= site_url($variable . '/new') ?>" class="btn btn-primary">Tambah</a>
+            </div>
         </div>
-
-    </div>
+    <?php endif; ?>
     <?php if (session()->getFlashdata('success')) { ?>
         <div class="alert alert-success alert-dismissible show fade">
             <div class="alert-body">
