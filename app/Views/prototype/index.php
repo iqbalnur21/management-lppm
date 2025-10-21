@@ -12,7 +12,6 @@ Daftar Prototype
         <th>Tahun Pembuatan</th>
         <th>Deskripsi</th>
         <th>Link Video Demo</th>
-        <th>File Dokumentasi</th>
         <?php if (session('role_id') == 1) : ?>
             <th class="action-column text-center">Aksi</th>
         <?php endif; ?>
@@ -26,7 +25,6 @@ Daftar Prototype
             <td><?= esc($value['tahun_pembuatan']) ?></td>
             <td><?= esc($value['deskripsi']) ?></td>
             <td><?= esc($value['link_video_demo']) ?></td>
-            <td><?= esc($value['file_dokumentasi']) ?></td>
             <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
                 <td class="text-center" style="width: 150px;">
                     <?php if (session('role_id') == 1) : ?>
@@ -36,6 +34,8 @@ Daftar Prototype
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                         </form>
+                    <?php else : ?>
+                        <span class="badge badge-warning text-dark">Sedang di Verifikasi</span>
                     <?php endif; ?>
                 </td>
             <?php endif; ?>

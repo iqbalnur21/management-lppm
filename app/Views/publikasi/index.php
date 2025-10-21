@@ -56,6 +56,8 @@ Daftar Publikasi Ilmiah
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                         </form>
+                    <?php else : ?>
+                        <span class="badge badge-warning text-dark">Sedang di Verifikasi</span>
                     <?php endif; ?>
                 </td>
             <?php endif; ?>

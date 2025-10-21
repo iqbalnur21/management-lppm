@@ -45,7 +45,7 @@ Dashboard
         <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="card card-statistic-2">
                 <div class="card-chart">
-                    <canvas id="balance-chart" height="80" style="margin-left: 20px;"></canvas>
+                    <canvas id="balance-chart" height="80" style="transform: translateX(-50%);left: 50%;position: relative"></canvas>
                 </div>
                 <div class="card-icon shadow-primary bg-primary">
                     <i class="fas fa-dollar-sign"></i>
@@ -64,7 +64,7 @@ Dashboard
         <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="card card-statistic-2">
                 <div class="card-chart">
-                    <canvas id="sales-chart" height="80" style="margin-left: 20px;"></canvas>
+                    <canvas id="sales-chart" height="80" style="transform: translateX(-50%);left: 50%;position: relative"></canvas>
                 </div>
                 <div class="card-icon shadow-primary bg-primary">
                     <i class="fas fa-book-open"></i>
