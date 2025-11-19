@@ -27,7 +27,7 @@ Daftar Penelitian
                         ?></td> -->
             <td><?= esc($value['skema_penelitian']) ?></td>
             <td><?= esc($value['tahun_penelitian']) ?></td>
-            <?php if (session('role_id') == 1) : ?>
+            <?php if (session('role_id') == 1 || session('role_id') == 3) : ?>
                 <td class="text-center">
                     <?php
                     $status_class = '';
@@ -48,14 +48,16 @@ Daftar Penelitian
                     ?>
                     <span class="badge <?= $status_class ?>"><?= ucfirst(esc($value['status'])) ?></span>
                 </td>
-                <td class="text-center" style="width: 200px;">
-                    <a href="<?= site_url('penelitian/edit/' . $value['id_penelitian']) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                    <form action="<?= site_url('penelitian/' . $value['id_penelitian']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                        <?= csrf_field() ?>
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                    </form>
-                </td>
+                <?php if (session('role_id') == 1) : ?>
+                    <td class="text-center" style="width: 200px;">
+                        <a href="<?= site_url('penelitian/edit/' . $value['id_penelitian']) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                        <form action="<?= site_url('penelitian/' . $value['id_penelitian']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                            <?= csrf_field() ?>
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                <?php endif; ?>
             <?php else : ?>
                 <td class="text-center">
                     <?php

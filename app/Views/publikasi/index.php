@@ -28,7 +28,7 @@ Daftar Publikasi Ilmiah
             <td><?= esc($value['jenis_publikasi']) ?></td>
             <td><?= esc($value['tahun']) ?></td>
 
-            <?php if (session('role_id') == 1) : ?>
+            <?php if (session('role_id') == 1 || session('role_id') == 3) : ?>
                 <td class="text-center">
                     <?php
                     $status_class = '';

@@ -13,7 +13,7 @@
             <li class="<?= $uri->getSegment(1) == 'dashboard' ? 'active' : '' ?>">
                 <a class="nav-link" href="<?= site_url('dashboard'); ?>"><i class="fas fa-fire"></i> <span>Beranda</span></a>
             </li>
-            <?php if (session('role_id') == 1 || session('role_id') == 2) : ?>
+            <?//php if (session('role_id') == 1 || session('role_id') == 2) : ?>
                 <li class="menu-header">Menu</li>
                 <li class="nav-item dropdown <?= in_array($uri->getSegment(1), ['penelitian', 'publikasi', 'hki', 'prototype']) ? 'active' : '' ?>">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-flask"></i><span>Penelitian</span></a>
@@ -27,7 +27,7 @@
                 <li class="<?= $uri->getSegment(1) == 'pengabdian' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?= site_url('pengabdian') ?>"><i class="fas fa-hands-helping"></i> <span>Pengabdian</span></a>
                 </li>
-            <?php endif; ?>
+            <?//php endif; ?>
         </ul>
     </aside>
 </div>
