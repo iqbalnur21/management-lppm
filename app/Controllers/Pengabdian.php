@@ -212,7 +212,7 @@ class Pengabdian extends BaseController
                 'required' => 'Jumlah Dana Tidak Boleh Kosong',
             ]
         ],
-        'tahun_pelaksanaan' => [
+        'tanggal_pelaksanaan' => [
             'rules' => 'required',
             'errors' => [
                 'required' => 'Tahun Pelaksanaan Tidak Boleh Kosong',

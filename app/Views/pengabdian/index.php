@@ -32,7 +32,7 @@ Daftar Pengabdian Masyarakat
             <td><?= $value['lokasi_pengabdian'] ?></td>
             <td><?= $value['sumber_dana'] ?></td>
             <td><?= currencyFormat($value['jumlah_dana']) ?></td>
-            <td><?= $value['tahun_pelaksanaan'] ?></td>
+            <td><?= $value['tanggal_pelaksanaan'] ?></td>
             <!-- <td><? //= dateFormat($value['tanggal_mulai']) 
                         ?></td>
             <td><? //= dateFormat($value['tanggal_selesai']) 

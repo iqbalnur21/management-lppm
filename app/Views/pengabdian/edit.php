@@ -63,10 +63,10 @@ Edit Data Pengabdian: <?= esc($data['judul_pengabdian']) ?>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="tahun_pelaksanaan">Tahun Pelaksanaan</label>
-                <input type="number" name="tahun_pelaksanaan" id="tahun_pelaksanaan" class="form-control <?= isset(session('errors')['tahun_pelaksanaan']) ? 'is-invalid' : '' ?>" value="<?= old('tahun_pelaksanaan', $data['tahun_pelaksanaan']) ?>">
+                <label for="tanggal_pelaksanaan">Tahun Pelaksanaan</label>
+                <input type="number" name="tanggal_pelaksanaan" id="tanggal_pelaksanaan" class="form-control <?= isset(session('errors')['tanggal_pelaksanaan']) ? 'is-invalid' : '' ?>" value="<?= old('tanggal_pelaksanaan', $data['tanggal_pelaksanaan']) ?>">
                 <div class="invalid-feedback">
-                    <?= session('errors.tahun_pelaksanaan') ?>
+                    <?= session('errors.tanggal_pelaksanaan') ?>
                 </div>
             </div>
         </div>

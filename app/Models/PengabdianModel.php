@@ -18,7 +18,7 @@ class PengabdianModel extends Model
         'lokasi_pengabdian',
         'sumber_dana',
         'jumlah_dana',
-        'tahun_pelaksanaan',
+        'tanggal_pelaksanaan',
         'tanggal_mulai',
         'tanggal_selesai',
         'file_surat_tugas',
