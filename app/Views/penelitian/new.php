@@ -61,10 +61,10 @@ Formulir Tambah Data Penelitian
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="tahun_penelitian">Tahun Penelitian</label>
-                <input type="number" name="tahun_penelitian" id="tahun_penelitian" class="form-control <?= isset(session('errors')['tahun_penelitian']) ? 'is-invalid' : '' ?>" value="<?= old('tahun_penelitian', date('Y')) ?>">
+                <label for="tanggal_penelitian">Tahun Penelitian</label>
+                <input type="number" name="tanggal_penelitian" id="tanggal_penelitian" class="form-control <?= isset(session('errors')['tanggal_penelitian']) ? 'is-invalid' : '' ?>" value="<?= old('tanggal_penelitian', date('Y')) ?>">
                 <div class="invalid-feedback">
-                    <?= session('errors.tahun_penelitian') ?>
+                    <?= session('errors.tanggal_penelitian') ?>
                 </div>
             </div>
         </div>

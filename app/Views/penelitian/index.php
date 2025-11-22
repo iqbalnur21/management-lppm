@@ -26,7 +26,7 @@ Daftar Penelitian
             <!-- <td><? //= esc($value['nama_lengkap']) 
                         ?></td> -->
             <td><?= esc($value['skema_penelitian']) ?></td>
-            <td><?= esc($value['tahun_penelitian']) ?></td>
+            <td><?= esc($value['tanggal_penelitian']) ?></td>
             <?php if (session('role_id') == 1 || session('role_id') == 3) : ?>
                 <td class="text-center">
                     <?php

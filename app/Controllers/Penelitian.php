@@ -228,7 +228,7 @@ class Penelitian extends BaseController
                 'required' => 'Jumlah Dana Tidak Boleh Kosong',
             ]
         ],
-        'tahun_penelitian' => [
+        'tanggal_penelitian' => [
             'rules' => 'required',
             'errors' => [
                 'required' => 'Tahun Penelitian Tidak Boleh Kosong',

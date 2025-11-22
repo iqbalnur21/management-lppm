@@ -19,7 +19,7 @@ class PenelitianModel extends Model
         'sumber_dana',
         'jumlah_dana',
         'status',
-        'tahun_penelitian',
+        'tanggal_penelitian',
         'file_surat_tugas',
         'file_proposal',
         'created_at',
