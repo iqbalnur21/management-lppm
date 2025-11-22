@@ -15,6 +15,7 @@ class MahasiswaModel extends Model
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        "user_id",
         "nim",
         "nama_lengkap",
         "prodi",

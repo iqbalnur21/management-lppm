@@ -15,6 +15,7 @@ class DosenModel extends Model
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        "user_id",
         "nidn",
         "nama_lengkap",
         "prodi",

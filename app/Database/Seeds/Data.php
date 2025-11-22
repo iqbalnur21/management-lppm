@@ -79,15 +79,6 @@ class Data extends Seeder
                 'updated_at' => $time->now(),
             ], // ID: 6
 
-            // --- MAHASISWA (Baru) ---
-            [
-                'role_id'  => 4, // mahasiswa
-                'name'     => 'Kevin Sanjaya',
-                'username' => 'kevinmhs',
-                'password' => password_hash('123456', PASSWORD_DEFAULT),
-                'created_at' => $time->now(),
-                'updated_at' => $time->now(),
-            ], // ID: 7
         ];
         $this->db->table('users')->insertBatch($users);
 
@@ -290,7 +281,8 @@ class Data extends Seeder
         $publikasi = [
             [
                 'user_id'               => 1,
-                'id_penelitian_terkait' => 3,
+                'id_penelitian_terkait' => 2,
+                'jenis_pengabdian_atau_penelitian' => 1,
                 'judul_artikel'         => 'A Novel Architecture for Energy-Efficient Smart Home IoT',
                 'jenis_publikasi'       => 'Jurnal Internasional',
                 'nama_publikasi'        => 'IEEE Internet of Things Journal',
@@ -311,6 +303,7 @@ class Data extends Seeder
             [
                 'user_id'               => 2,
                 'id_penelitian_terkait' => 2,
+                'jenis_pengabdian_atau_penelitian' => 2,
                 'judul_artikel'         => 'Urban Traffic Congestion Modeling using Big Data Analytics',
                 'jenis_publikasi'       => 'Konferensi Internasional',
                 'nama_publikasi'        => 'International Conference on Data Science (ICDS)',
