@@ -4,7 +4,7 @@
 $commands = [
     'php spark migrate:rollback',
     'php spark migrate',
-    'php spark db:seed User'
+    'php spark db:seed Data'
 ];
 
 // Execute each command and display the output
