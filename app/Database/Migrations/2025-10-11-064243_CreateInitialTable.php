@@ -25,6 +25,7 @@ class CreateLppmTables extends Migration
             'password'   => ['type' => 'VARCHAR', 'constraint' => 255],
             'created_at' => ['type' => 'DATETIME', 'null' => true],
             'updated_at' => ['type' => 'DATETIME', 'null' => true],
+            'deleted_at'          => ['type' => 'DATETIME', 'null' => true],
         ]);
         $this->forge->addKey('id', true);
         $this->forge->createTable('users', true);
@@ -32,13 +33,13 @@ class CreateLppmTables extends Migration
         // --- TABEL BARU: DOSEN ---
         $this->forge->addField([
             'id_dosen'      => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'user_id'       => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
             'nidn'          => ['type' => 'INT', 'constraint' => 20, 'unique' => true], // Sesuai request: INT
             'nama_lengkap'  => ['type' => 'VARCHAR', 'constraint' => 150],
             'prodi'         => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
             'email'         => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
             'created_at'    => ['type' => 'DATETIME', 'null' => true],
             'updated_at'    => ['type' => 'DATETIME', 'null' => true],
+            'deleted_at'          => ['type' => 'DATETIME', 'null' => true],
         ]);
         $this->forge->addKey('id_dosen', true);
         $this->forge->createTable('dosen', true);
@@ -46,13 +47,13 @@ class CreateLppmTables extends Migration
         // --- TABEL BARU: MAHASISWA ---
         $this->forge->addField([
             'id_mahasiswa'  => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'user_id'       => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
             'nim'           => ['type' => 'VARCHAR', 'constraint' => 20, 'unique' => true], // Sesuai request: VARCHAR
             'nama_lengkap'  => ['type' => 'VARCHAR', 'constraint' => 150],
             'prodi'         => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
             'angkatan'      => ['type' => 'YEAR', 'null' => true],
             'created_at'    => ['type' => 'DATETIME', 'null' => true],
             'updated_at'    => ['type' => 'DATETIME', 'null' => true],
+            'deleted_at'          => ['type' => 'DATETIME', 'null' => true],
         ]);
         $this->forge->addKey('id_mahasiswa', true);
         $this->forge->createTable('mahasiswa', true);
