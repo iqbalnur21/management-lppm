@@ -58,8 +58,18 @@ class Publikasi extends BaseController
      */
     public function new()
     {
+        // $data['variable'] = $this->variable;
+        // $data['title'] = $this->title;
+
+        // return view($data['variable'] . '/new', $data);
+    }
+
+
+    public function custom_new($penelitian_or_pengabdian)
+    {
         $data['variable'] = $this->variable;
         $data['title'] = $this->title;
+        $data['penelitian_or_pengabdian'] = $penelitian_or_pengabdian;
 
         return view($data['variable'] . '/new', $data);
     }
@@ -84,7 +94,7 @@ class Publikasi extends BaseController
             $data['file_artikel'] = $newName;
         }
         $this->models->insert($data);
-        return redirect()->to(site_url($this->variable))->with('success', "Data $this->title Berhasil Ditambah");
+        return redirect()->to(site_url($this->variable.'/kategori/'.$data['jenis_pengabdian_atau_penelitian']))->with('success', "Data $this->title Berhasil Ditambah");
     }
     /**
      * Present a view to edit the properties of a specific resource object
@@ -117,7 +127,7 @@ class Publikasi extends BaseController
             return redirect()->back()->withInput()->with('errors', $errors);
         }
         $file = $this->request->getFile('file_artikel');
-        if ($file->isValid() && !$file->hasMoved()) {
+        if ($file !== null && $file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
             $file->move(ROOTPATH . env('app.assetsPath') . '/upload/publikasi', $newName);
             $data['file_artikel'] = $newName;
@@ -126,7 +136,7 @@ class Publikasi extends BaseController
             $data['file_artikel'] = $blockDetail['file_artikel'];
         }
         $this->models->update($id, $data);
-        return redirect()->to(site_url($this->variable))->with('success', "Data $this->title Berhasil Diupdate");
+        return redirect()->to(site_url($this->variable.'/kategori/'.$data['jenis_pengabdian_atau_penelitian']))->with('success', "Data $this->title Berhasil Diupdate");
     }
 
     /**
@@ -156,7 +166,7 @@ class Publikasi extends BaseController
         } else {
             $this->models->purgeDeleted();
         }
-        return redirect()->to(site_url($this->variable . '/trash'))->with('success', 'Data Berhasil Dihapus');
+        return redirect()->to(site_url($this->variable . '/kategori/1'))->with('success', 'Data Berhasil Dihapus');
     }
     public function trash()
     {
@@ -189,52 +199,61 @@ class Publikasi extends BaseController
     }
     public array $rules = [
         'judul_artikel' => [
-            'rules' => 'required',
+            'rules'  => 'required|string',
             'errors' => [
                 'required' => 'Judul Artikel Tidak Boleh Kosong',
-            ]
+            ],
         ],
+
         'jenis_publikasi' => [
-            'rules' => 'required',
+            'rules'  => 'required',
             'errors' => [
                 'required' => 'Jenis Publikasi Tidak Boleh Kosong',
-            ]
+            ],
         ],
+
         'nama_publikasi' => [
-            'rules' => 'required',
+            'rules'  => 'required|string',
             'errors' => [
                 'required' => 'Nama Publikasi Tidak Boleh Kosong',
-            ]
+            ],
         ],
-        'tahun' => [
-            'rules' => 'required',
+
+        'tanggal_terbit' => [
+            'rules'  => 'required|date',
             'errors' => [
-                'required' => 'Tahun Tidak Boleh Kosong',
-            ]
+                'required'     => 'Tanggal Terbit Tidak Boleh Kosong',
+                'date'          => 'Tanggal Terbit harus berupa tanggal yang valid',
+            ],
         ],
+
         'volume' => [
-            'rules' => 'required',
+            'rules'  => 'required',
             'errors' => [
                 'required' => 'Volume Tidak Boleh Kosong',
-            ]
+            ],
         ],
+
         'nomor' => [
-            'rules' => 'required',
+            'rules'  => 'required',
             'errors' => [
                 'required' => 'Nomor Tidak Boleh Kosong',
-            ]
+            ],
         ],
+
         'halaman' => [
-            'rules' => 'required',
+            'rules'  => 'required',
             'errors' => [
                 'required' => 'Halaman Tidak Boleh Kosong',
-            ]
+            ],
         ],
+
         'link_publikasi' => [
-            'rules' => 'required',
+            'rules'  => 'required|valid_url',
             'errors' => [
-                'required' => 'Link Publikasi Tidak Boleh Kosong',
-            ]
+                'required'  => 'Link Publikasi Tidak Boleh Kosong',
+                'valid_url' => 'Link Publikasi harus berupa URL yang valid',
+            ],
         ],
     ];
 }

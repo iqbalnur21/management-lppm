@@ -155,15 +155,10 @@ class CreateLppmTables extends Migration
             'jenis_pengabdian_atau_penelitian'  => ['type' => 'INT', 'constraint' => 11, 'comment' => '1=Penelitian, 2=Pengabdian'],
             'jenis_publikasi'                   => ['type' => 'VARCHAR', 'constraint' => 255],
             'nama_publikasi'                    => ['type' => 'VARCHAR', 'constraint' => 255],
-
-            // Ubah tahun menjadi tanggal
             'tanggal_terbit'          => ['type' => 'DATE', 'null' => true],
-
-            // Atribut Baru yang diminta
             'status_akreditasi_jurnal' => ['type' => 'INT', 'constraint' => 2, 'null' => true, 'comment' => '1=Terakreditasi, 0=Tidak'],
             'sinta'                   => ['type' => 'ENUM("C1","C2","C3","C4","C5","C6")', 'null' => true],
             'quartile'                => ['type' => 'ENUM("Q1","Q2","Q3","Q4")', 'null' => true],
-
             'volume'                  => ['type' => 'VARCHAR', 'constraint' => 20, 'null' => true],
             'nomor'                   => ['type' => 'VARCHAR', 'constraint' => 20, 'null' => true],
             'halaman'                 => ['type' => 'VARCHAR', 'constraint' => 20, 'null' => true],

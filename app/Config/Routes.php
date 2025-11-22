@@ -20,8 +20,15 @@ $routes->group('', ['filter' => 'isLoggedIn'], static function ($routes) {
     // Menggunakan 'resource' untuk membuat rute CRUD lengkap secara otomatis
     // untuk setiap modul kegiatan dosen.
     $routes->resource('pengabdian', ['controller' => 'Pengabdian']);
-    $routes->resource('penelitian', ['controller' => 'Penelitian']);
+    $routes->resource('penelitian', ['controller' => 'Penelitian']); // 1. Define specific custom routes FIRST
+    $routes->get('publikasi/trash', 'Publikasi::trash'); // This handles the trash page
+    $routes->get('publikasi/restore/(:num)', 'Publikasi::restore/$1'); // For restoring specific ID
+    $routes->get('publikasi/restore', 'Publikasi::restore'); // For restoring all
+
     $routes->get('publikasi/kategori/(:segment)', 'Publikasi::kategori/$1');
+    $routes->get('publikasi/custom_new/(:segment)', 'Publikasi::custom_new/$1');
+
+    // 2. Define the generic resource route LAST
     $routes->resource('publikasi', ['controller' => 'Publikasi']);
     $routes->resource('hki', ['controller' => 'Hki']);
     $routes->resource('prototype', ['controller' => 'Prototype']);
