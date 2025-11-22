@@ -147,11 +147,11 @@ class Data extends Seeder
         $penelitian = [
             [
                 'user_id'           => 1, // Budi
-                'id_dosen'          => 1, // Link ke tabel dosen (Budi)
+                'id_dosen'          => 1,
                 'id_mahasiswa'      => null,
                 'judul_penelitian'  => 'Sistem Cerdas untuk Deteksi Penyakit Tanaman Padi',
                 'skema_penelitian'  => 'Penelitian Dasar',
-                'tanggal_penelitian'=> '2025-01-15', // Diubah dari tahun ke tanggal
+                'tanggal_penelitian'=> '2025-01-15',
                 'tujuan'            => 'Mengembangkan algoritma AI untuk petani lokal.',
                 'sumber_dana'       => 'Internal',
                 'jumlah_dana'       => 50000000,
@@ -162,11 +162,11 @@ class Data extends Seeder
             ],
             [
                 'user_id'           => 2, // Indah
-                'id_dosen'          => 2, // Link ke tabel dosen (Indah)
-                'id_mahasiswa'      => 1, // Melibatkan mahasiswa Kevin
+                'id_dosen'          => 2,
+                'id_mahasiswa'      => 1,
                 'judul_penelitian'  => 'Analisis Big Data untuk Model Transportasi Urban Cerdas',
                 'skema_penelitian'  => 'Penelitian Terapan',
-                'tanggal_penelitian'=> '2025-02-10', // Diubah dari tahun ke tanggal
+                'tanggal_penelitian'=> '2025-02-10',
                 'tujuan'            => 'Membuat model prediksi kemacetan berbasis data historis.',
                 'sumber_dana'       => 'Dikti',
                 'jumlah_dana'       => 150000000,
@@ -208,7 +208,7 @@ class Data extends Seeder
             [
                 'user_id'           => 1, // Budi
                 'id_dosen'          => 1,
-                'id_mahasiswa'      => 1, // Bersama Kevin
+                'id_mahasiswa'      => 1,
                 'judul_penelitian'  => 'Model Prediksi Kinerja Mahasiswa Menggunakan Machine Learning',
                 'skema_penelitian'  => 'Penelitian Dosen Pemula',
                 'tanggal_penelitian'=> '2025-04-15',
@@ -229,8 +229,8 @@ class Data extends Seeder
         $pengabdian = [
             [
                 'user_id'           => 2, // Indah
-                'id_dosen'          => 2, // Indah
-                'id_mahasiswa'      => 1, // Kevin
+                'id_dosen'          => 2,
+                'id_mahasiswa'      => 1,
                 'judul_pengabdian'  => 'Pelatihan Digital Marketing untuk UMKM Desa Sukamaju',
                 'tema'              => 'Pemberdayaan Ekonomi Masyarakat',
                 'tujuan'            => 'Meningkatkan omzet UMKM lokal melalui pasar digital.',
@@ -238,7 +238,7 @@ class Data extends Seeder
                 'lokasi_pengabdian' => 'Desa Sukamaju, Kab. A',
                 'sumber_dana'       => 'Internal',
                 'jumlah_dana'       => 30000000,
-                'tanggal_pelaksanaan' => '2025-09-01', // Diubah
+                'tanggal_pelaksanaan' => '2025-09-01',
                 'tanggal_mulai'     => '2025-09-01',
                 'tanggal_selesai'   => '2025-11-01',
                 'status'            => 'menunggu',
@@ -256,7 +256,7 @@ class Data extends Seeder
                 'lokasi_pengabdian' => 'SMA Negeri 1 Kota B',
                 'sumber_dana'       => 'Mandiri',
                 'jumlah_dana'       => 15000000,
-                'tanggal_pelaksanaan' => '2025-10-01', // Diubah
+                'tanggal_pelaksanaan' => '2025-10-01',
                 'tanggal_mulai'     => '2025-10-01',
                 'tanggal_selesai'   => '2025-10-02',
                 'status'            => 'diverifikasi',
@@ -274,7 +274,7 @@ class Data extends Seeder
                 'lokasi_pengabdian' => 'Kelurahan Tani Makmur',
                 'sumber_dana'       => 'Internal',
                 'jumlah_dana'       => 20000000,
-                'tanggal_pelaksanaan' => '2025-11-01', // Diubah
+                'tanggal_pelaksanaan' => '2025-11-01',
                 'tanggal_mulai'     => '2025-11-01',
                 'tanggal_selesai'   => '2025-11-30',
                 'status'            => 'revisi',
@@ -294,13 +294,10 @@ class Data extends Seeder
                 'judul_artikel'         => 'A Novel Architecture for Energy-Efficient Smart Home IoT',
                 'jenis_publikasi'       => 'Jurnal Internasional',
                 'nama_publikasi'        => 'IEEE Internet of Things Journal',
-                'tanggal_terbit'        => '2025-06-15', // Diubah dari tahun
-                
-                // Atribut Baru
+                'tanggal_terbit'        => '2025-06-15',
                 'status_akreditasi_jurnal' => 1,
-                'sinta'                 => 'C1', // Contoh dummy jika masuk sinta (walau ini jurnal inter)
+                'sinta'                 => 'C1',
                 'quartile'              => 'Q1',
-
                 'volume'                => '12',
                 'nomor'                 => '4',
                 'halaman'               => '110-120',
@@ -317,13 +314,10 @@ class Data extends Seeder
                 'judul_artikel'         => 'Urban Traffic Congestion Modeling using Big Data Analytics',
                 'jenis_publikasi'       => 'Konferensi Internasional',
                 'nama_publikasi'        => 'International Conference on Data Science (ICDS)',
-                'tanggal_terbit'        => '2025-08-20', // Diubah dari tahun
-                
-                // Atribut Baru
-                'status_akreditasi_jurnal' => 0, // Prosiding mungkin tidak terakreditasi jurnal nasional
+                'tanggal_terbit'        => '2025-08-20',
+                'status_akreditasi_jurnal' => 0,
                 'sinta'                 => null,
-                'quartile'              => null, // Prosiding biasanya tidak ada Q
-
+                'quartile'              => null,
                 'volume'                => null,
                 'nomor'                 => null,
                 'halaman'               => '50-56',
@@ -343,7 +337,7 @@ class Data extends Seeder
                 'id_penelitian_terkait' => 1,
                 'judul_ciptaan'         => 'Software Deteksi Penyakit Tanaman Padi v1.0',
                 'jenis_hki'             => 'Hak Cipta',
-                'pemilik_hak'           => 'Universitas & Dr. Budi Santoso', // Baru
+                'pemilik_hak'           => 'Universitas & Dr. Budi Santoso',
                 'nomor_pendaftaran'     => 'EC00202512345',
                 'nomor_sertifikat'      => null,
                 'tanggal_penerimaan'    => null,
@@ -357,11 +351,9 @@ class Data extends Seeder
         $this->db->table('hki')->insertBatch($hki);
 
         // ----------------------------------------
-        // 6. Tabel Anggota (Opsional / Tambahan)
+        // 6. Tabel Anggota
         // ----------------------------------------
-        // Catatan: id_anggota auto increment, data ini tetap relevan
         $penelitian_anggota = [
-            // Anggota untuk Penelitian ID 2 (Indah)
             [
                 'id_penelitian' => 2,
                 'user_id'       => 1, // Anggota adalah dosen (Budi)
@@ -370,11 +362,10 @@ class Data extends Seeder
             ],
             [
                 'id_penelitian' => 2,
-                'user_id'       => 7, // Anggota adalah mahasiswa (Kevin) yang sudah punya user
+                'user_id'       => 7, // Anggota adalah mahasiswa (Kevin)
                 'nama_mahasiswa_atau_eksternal' => 'Kevin Sanjaya', 
                 'peran'         => 'Mahasiswa'
             ],
-            // Anggota untuk Penelitian ID 3 (Budi)
             [
                 'id_penelitian' => 3,
                 'user_id'       => 3, // Anggota adalah dosen (Ahmad)
@@ -385,7 +376,6 @@ class Data extends Seeder
         $this->db->table('penelitian_anggota')->insertBatch($penelitian_anggota);
 
         $pengabdian_anggota = [
-            // Anggota untuk Pengabdian ID 1 (Indah)
             [
                 'id_pengabdian' => 1,
                 'user_id'       => null,
@@ -400,6 +390,53 @@ class Data extends Seeder
             ],
         ];
         $this->db->table('pengabdian_anggota')->insertBatch($pengabdian_anggota);
+
+        // ----------------------------------------
+        // 7. Tabel Notifikasi (BARU)
+        // ----------------------------------------
+        $notifikasi = [
+            // Notif untuk Penelitian Budi (ID 1) yang 'Menunggu' - Ditujukan ke Staf LPPM
+            [
+                'id_penelitian_pengabdian' => 1,
+                'status_notifikasi'        => 0, // Belum Dibaca
+                'status_surat'             => 3, // Menunggu
+                'jenis_notifikasi'         => 'Penelitian',
+                'tampil_di'                => 'Staff LPPM', // Notif untuk verifikator
+                'created_at'               => $time->now(),
+                'updated_at'               => $time->now(),
+            ],
+            // Notif untuk Penelitian Indah (ID 2) yang 'Revisi' - Ditujukan ke Dosen
+            [
+                'id_penelitian_pengabdian' => 2,
+                'status_notifikasi'        => 0, // Belum Dibaca
+                'status_surat'             => 2, // Revisi
+                'jenis_notifikasi'         => 'Penelitian',
+                'tampil_di'                => 'Dosen', // Notif balikan ke dosen
+                'created_at'               => $time->now(),
+                'updated_at'               => $time->now(),
+            ],
+            // Notif untuk Pengabdian Ahmad (ID 2) yang 'Diverifikasi' - Ditujukan ke Dosen
+            [
+                'id_penelitian_pengabdian' => 2,
+                'status_notifikasi'        => 1, // Sudah Dibaca
+                'status_surat'             => 0, // Diverifikasi
+                'jenis_notifikasi'         => 'Pengabdian',
+                'tampil_di'                => 'Dosen', 
+                'created_at'               => $time->now(),
+                'updated_at'               => $time->now(),
+            ],
+            // Notif untuk Penelitian Ahmad (ID 4) yang 'Selesai' - Ditujukan ke Dosen
+            [
+                'id_penelitian_pengabdian' => 4,
+                'status_notifikasi'        => 1, // Sudah Dibaca
+                'status_surat'             => 1, // Selesai
+                'jenis_notifikasi'         => 'Penelitian',
+                'tampil_di'                => 'Dosen',
+                'created_at'               => $time->now(),
+                'updated_at'               => $time->now(),
+            ],
+        ];
+        $this->db->table('notifikasi')->insertBatch($notifikasi);
 
         echo "Seeding LPPM data finished successfully.\n";
     }
