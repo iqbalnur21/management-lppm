@@ -108,19 +108,13 @@ class CreateLppmTables extends Migration
         $this->forge->addField([
             'id_penelitian'       => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'user_id'             => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
-
-            // Atribut Baru yang diminta
             'id_dosen'            => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true, 'comment' => 'Ketua Peneliti'],
             'id_mahasiswa'        => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
             'tujuan'              => ['type' => 'TEXT', 'null' => true],
-
             'nomor_surat'         => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
             'judul_penelitian'    => ['type' => 'VARCHAR', 'constraint' => 255],
             'skema_penelitian'    => ['type' => 'VARCHAR', 'constraint' => 100],
-
-            // Ubah tahun menjadi tanggal
             'tanggal_penelitian'  => ['type' => 'DATE', 'null' => true],
-
             'sumber_dana'         => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
             'jumlah_dana'         => ['type' => 'DECIMAL', 'constraint' => '15,2', 'null' => true],
             'file_surat_tugas'    => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],

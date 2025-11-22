@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\DosenModel;
+use App\Models\MahasiswaModel;
 use App\Models\PenelitianModel;
 
 class Penelitian extends BaseController
@@ -19,6 +21,8 @@ class Penelitian extends BaseController
         $this->request = \Config\Services::request();
         $this->validation = \Config\Services::validation();
         $this->models = new PenelitianModel();
+        $this->dosenModels = new DosenModel();
+        $this->mahasiswaModels = new MahasiswaModel();
     }
     /**
      * Present a view of resource objects
@@ -54,6 +58,8 @@ class Penelitian extends BaseController
     {
         $data['variable'] = $this->variable;
         $data['title'] = $this->title;
+        $data['list_dosen'] = $this->dosenModels->findAll();
+        $data['list_mahasiswa'] = $this->mahasiswaModels->findAll();
 
         return view($data['variable'] . '/new', $data);
     }
@@ -73,6 +79,7 @@ class Penelitian extends BaseController
         }
         $fileSuratTugas = $this->request->getFile('file_surat_tugas');
         $fileProposal = $this->request->getFile('file_proposal');
+        $fileLaporan = $this->request->getFile('file_laporan_akhir');
         if ($fileSuratTugas->isValid() && !$fileSuratTugas->hasMoved()) {
             $newNameSuratTugas = $fileSuratTugas->getRandomName();
             $fileSuratTugas->move(ROOTPATH . env('app.assetsPath') . '/upload/penelitian/surat_tugas', $newNameSuratTugas);
@@ -82,6 +89,11 @@ class Penelitian extends BaseController
             $newNameProposal = $fileProposal->getRandomName();
             $fileProposal->move(ROOTPATH . env('app.assetsPath') . '/upload/penelitian/proposal', $newNameProposal);
             $data['file_proposal'] = $newNameProposal;
+        }
+        if ($fileLaporan->isValid() && !$fileLaporan->hasMoved()) {
+            $newNameLaporan = $fileLaporan->getRandomName();
+            $fileLaporan->move(ROOTPATH . env('app.assetsPath') . '/upload/penelitian/laporan', $newNameLaporan);
+            $data['file_laporan_akhir'] = $newNameLaporan;
         }
         $this->models->insert($data);
         return redirect()->to(site_url($this->variable))->with('success', "Data $this->title Berhasil Ditambah");
@@ -97,6 +109,8 @@ class Penelitian extends BaseController
     {
         $data['title'] = $this->title;
         $data['variable'] = $this->variable;
+        $data['list_dosen'] = $this->dosenModels->findAll();
+        $data['list_mahasiswa'] = $this->mahasiswaModels->findAll();
         $data['data'] = $this->models->where(['penelitian.id_penelitian' => $id])->first();
         return view($data['variable'] . '/edit', $data);
     }
@@ -118,6 +132,7 @@ class Penelitian extends BaseController
         }
         $fileSuratTugas = $this->request->getFile('file_surat_tugas');
         $fileProposal = $this->request->getFile('file_proposal');
+        $fileLaporan = $this->request->getFile('file_laporan_akhir');
         if ($fileSuratTugas->isValid() && !$fileSuratTugas->hasMoved()) {
             $newNameSuratTugas = $fileSuratTugas->getRandomName();
             $fileSuratTugas->move(ROOTPATH . env('app.assetsPath') . '/upload/penelitian/surat_tugas', $newNameSuratTugas);
@@ -133,6 +148,14 @@ class Penelitian extends BaseController
         } else {
             $blockDetail = $this->models->where(['id_penelitian' => $id])->first();
             $data['file_proposal'] = $blockDetail['file_proposal'];
+        }
+        if ($fileLaporan->isValid() && !$fileLaporan->hasMoved()) {
+            $newNameProposal = $fileLaporan->getRandomName();
+            $fileLaporan->move(ROOTPATH . env('app.assetsPath') . '/upload/penelitian/laporan', $newNameProposal);
+            $data['file_laporan_akhir'] = $newNameProposal;
+        } else {
+            $blockDetail = $this->models->where(['id_penelitian' => $id])->first();
+            $data['file_laporan_akhir'] = $blockDetail['file_laporan_akhir'];
         }
         $this->models->update($id, $data);
         return redirect()->to(site_url($this->variable))->with('success', "Data $this->title Berhasil Diupdate");
@@ -198,6 +221,30 @@ class Penelitian extends BaseController
         return $this->response->setJSON(['success' => true]);
     }
     public array $rules = [
+        'id_dosen' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'ID Dosen Tidak Boleh Kosong',
+            ]
+        ],
+        'id_mahasiswa' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'ID Mahasiswa Tidak Boleh Kosong',
+            ]
+        ],
+        'tujuan' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Tujuan Tidak Boleh Kosong',
+            ]
+        ],
+        'nomor_surat' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Nomor Surat Tidak Boleh Kosong',
+            ]
+        ],
         'judul_penelitian' => [
             'rules' => 'required',
             'errors' => [
@@ -210,10 +257,10 @@ class Penelitian extends BaseController
                 'required' => 'Skema Penelitian Tidak Boleh Kosong',
             ]
         ],
-        'nomor_surat' => [
+        'tanggal_penelitian' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Nomor Surat Tidak Boleh Kosong',
+                'required' => 'Tanggal Penelitian Tidak Boleh Kosong',
             ]
         ],
         'sumber_dana' => [
@@ -228,10 +275,16 @@ class Penelitian extends BaseController
                 'required' => 'Jumlah Dana Tidak Boleh Kosong',
             ]
         ],
-        'tanggal_penelitian' => [
+        'status' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Tahun Penelitian Tidak Boleh Kosong',
+                'required' => 'Status Tidak Boleh Kosong',
+            ]
+        ],
+        'catatan_verifikator' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Catatan Verifikator Tidak Boleh Kosong',
             ]
         ],
     ];

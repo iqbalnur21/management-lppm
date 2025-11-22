@@ -50,7 +50,7 @@ Daftar Penelitian
                 </td>
                 <?php if (session('role_id') == 1) : ?>
                     <td class="text-center" style="width: 200px;">
-                        <a href="<?= site_url('penelitian/edit/' . $value['id_penelitian']) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                        <a href="<?= site_url('penelitian/' . $value['id_penelitian'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                         <form action="<?= site_url('penelitian/' . $value['id_penelitian']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                             <?= csrf_field() ?>
                             <input type="hidden" name="_method" value="DELETE">

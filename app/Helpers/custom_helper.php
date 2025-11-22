@@ -39,6 +39,10 @@ function currencyFormat($amount)
 {
     echo $amount ? 'Rp ' . number_format($amount, 0, ',', '.') : "";
 }
+function currencyNumberFormat($amount)
+{
+    echo $amount ? round($amount, -2) : 0;
+}
 
 function url($url_index)
 {
