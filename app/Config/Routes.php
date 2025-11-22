@@ -21,9 +21,13 @@ $routes->group('', ['filter' => 'isLoggedIn'], static function ($routes) {
     // untuk setiap modul kegiatan dosen.
     $routes->resource('pengabdian', ['controller' => 'Pengabdian']);
     $routes->resource('penelitian', ['controller' => 'Penelitian']);
+    $routes->get('publikasi/kategori/(:segment)', 'Publikasi::kategori/$1');
     $routes->resource('publikasi', ['controller' => 'Publikasi']);
     $routes->resource('hki', ['controller' => 'Hki']);
     $routes->resource('prototype', ['controller' => 'Prototype']);
+    $routes->resource('dosen', ['controller' => 'dosen']);
+    $routes->resource('mahasiswa', ['controller' => 'mahasiswa']);
+    $routes->resource('user', ['controller' => 'user']);
 
     // --- Rute untuk Peran: STAF LPPM ---
     // Rute untuk halaman verifikasi dan laporan

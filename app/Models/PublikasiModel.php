@@ -13,10 +13,11 @@ class PublikasiModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'jenis_pengabdian_atau_penelitian',
         'judul_artikel',
         'jenis_publikasi',
         'nama_publikasi',
-        'tahun',
+        'tanggal_terbit',
         'volume',
         'nomor',
         'halaman',

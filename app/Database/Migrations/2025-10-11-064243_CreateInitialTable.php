@@ -33,6 +33,7 @@ class CreateLppmTables extends Migration
         // --- TABEL BARU: DOSEN ---
         $this->forge->addField([
             'id_dosen'      => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+            'user_id'                 => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'nidn'          => ['type' => 'INT', 'constraint' => 20, 'unique' => true], // Sesuai request: INT
             'nama_lengkap'  => ['type' => 'VARCHAR', 'constraint' => 150],
             'prodi'         => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
@@ -47,6 +48,7 @@ class CreateLppmTables extends Migration
         // --- TABEL BARU: MAHASISWA ---
         $this->forge->addField([
             'id_mahasiswa'  => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+            'user_id'                 => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'nim'           => ['type' => 'VARCHAR', 'constraint' => 20, 'unique' => true], // Sesuai request: VARCHAR
             'nama_lengkap'  => ['type' => 'VARCHAR', 'constraint' => 150],
             'prodi'         => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
@@ -146,12 +148,13 @@ class CreateLppmTables extends Migration
 
         // 5. Tabel Publikasi
         $this->forge->addField([
-            'id_publikasi'            => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'user_id'                 => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
-            'id_penelitian_terkait'   => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
-            'judul_artikel'           => ['type' => 'VARCHAR', 'constraint' => 255],
-            'jenis_publikasi'         => ['type' => 'VARCHAR', 'constraint' => 255],
-            'nama_publikasi'          => ['type' => 'VARCHAR', 'constraint' => 255],
+            'id_publikasi'                      => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+            'user_id'                           => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+            'id_penelitian_terkait'             => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
+            'judul_artikel'                     => ['type' => 'VARCHAR', 'constraint' => 255],
+            'jenis_pengabdian_atau_penelitian'  => ['type' => 'INT', 'constraint' => 11, 'comment' => '1=Penelitian, 2=Pengabdian'],
+            'jenis_publikasi'                   => ['type' => 'VARCHAR', 'constraint' => 255],
+            'nama_publikasi'                    => ['type' => 'VARCHAR', 'constraint' => 255],
 
             // Ubah tahun menjadi tanggal
             'tanggal_terbit'          => ['type' => 'DATE', 'null' => true],
@@ -224,7 +227,7 @@ class CreateLppmTables extends Migration
             'id_penelitian_pengabdian'  => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'status_notifikasi'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'comment' => '0 = Belum Dibaca, 1 = Sudah Dibaca'],
             'status_surat'              => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'comment' => '0 = Diverifikasi, 1 = Selesai, 2 = Revisi, 3 = Menunggu'],
-            'jenis_notifikasi'          => ['type' => 'VARCHAR', 'constraint' => 255, 'comment' => 'Pengabdian atau Penelitian'],
+            'jenis_notifikasi'          => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'tampil_di'                 => ['type' => 'VARCHAR', 'constraint' => 255, 'comment' => 'Dosen, Staff LPPM, Kepala LPPM, Admin'],
             'created_at'                => ['type' => 'DATETIME', 'null' => true],
             'updated_at'                => ['type' => 'DATETIME', 'null' => true],

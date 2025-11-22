@@ -25,12 +25,18 @@ class Publikasi extends BaseController
      *
      * @return mixed
      */
-    public function index()
+    public function index($penelitian_or_pengabdian = null)
+    {
+        // $data['title'] = $this->title;
+        // $data['variable'] = $this->variable;
+        // $data['data'] = $this->models->where('jenis_pengabdian_atau_penelitian', $penelitian_or_pengabdian)->findAll();
+        // return view($data['variable'] . '/index', $data);
+    }
+    public function kategori($penelitian_or_pengabdian = null)
     {
         $data['title'] = $this->title;
         $data['variable'] = $this->variable;
-        $data['data'] = $this->models->FindAll();
-
+        $data['data'] = $this->models->where('jenis_pengabdian_atau_penelitian', $penelitian_or_pengabdian)->findAll();
         return view($data['variable'] . '/index', $data);
     }
     /**

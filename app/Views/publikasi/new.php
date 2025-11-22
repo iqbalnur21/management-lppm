@@ -13,6 +13,7 @@ Formulir Tambah Data Publikasi
 
     <div class="form-group">
         <label for="judul_artikel">Judul Artikel</label>
+        <input type="hidden" name="jenis_pengabdian_atau_penelitian" id="jenis_pengabdian_atau_penelitian">
         <input type="text" name="judul_artikel" id="judul_artikel" class="form-control <?= isset(session('errors')['judul_artikel']) ? 'is-invalid' : '' ?>" value="<?= old('judul_artikel') ?>" autofocus>
         <div class="invalid-feedback">
             <?= session('errors.judul_artikel') ?>
@@ -50,10 +51,10 @@ Formulir Tambah Data Publikasi
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
-                <label for="tahun">Tahun Terbit</label>
-                <input type="number" name="tahun" id="tahun" class="form-control <?= isset(session('errors')['tahun']) ? 'is-invalid' : '' ?>" value="<?= old('tahun', date('Y')) ?>">
+                <label for="tanggal_terbit">Tanggal Terbit</label>
+                <input type="number" name="tanggal_terbit" id="tanggal_terbit" class="form-control <?= isset(session('errors')['tanggal_terbit']) ? 'is-invalid' : '' ?>" value="<?= old('tanggal_terbit', date('Y')) ?>">
                 <div class="invalid-feedback">
-                    <?= session('errors.tahun') ?>
+                    <?= session('errors.tanggal_terbit') ?>
                 </div>
             </div>
         </div>

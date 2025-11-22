@@ -30,7 +30,7 @@
                     </li>
                     <!-- Sesuai Gambar: Publikasi Penelitian -->
                     <li class="<?= $uri->getSegment(1) == 'publikasi' && $uri->getSegment(2) == '' ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?= site_url('publikasi') ?>">Publikasi Penelitian</a>
+                        <a class="nav-link" href="<?= site_url('publikasi/kategori/1') ?>">Publikasi Penelitian</a>
                     </li>
                     <!-- HKI & Prototype tetap di sini sesuai struktur gambar -->
                     <li class="<?= $uri->getSegment(1) == 'hki' ? 'active' : '' ?>">
@@ -40,12 +40,12 @@
                         <a class="nav-link" href="<?= site_url('prototype') ?>">Prototype</a>
                     </li>
                     <li class="<?= ($uri->getSegment(1) == 'publikasi' && $uri->getSegment(2) == 'dosen') ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?= site_url('publikasi/dosen') ?>">
+                        <a class="nav-link" href="<?= site_url('dosen') ?>">
                             <span>Publikasi Dosen</span>
                         </a>
                     </li>
                     <li class="<?= ($uri->getSegment(1) == 'publikasi' && $uri->getSegment(2) == 'mahasiswa') ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?= site_url('publikasi/mahasiswa') ?>">
+                        <a class="nav-link" href="<?= site_url('mahasiswa') ?>">
                             <span>Publikasi Mahasiswa</span>
                         </a>
                     </li>
@@ -61,7 +61,7 @@
                     </li>
                     <!-- Sesuai Gambar: Publikasi Pengabdian -->
                     <li class="<?= $uri->getSegment(1) == 'pengabdian' && $uri->getSegment(2) == 'publikasi' ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?= site_url('pengabdian/publikasi') ?>">Publikasi Pengabdian</a>
+                        <a class="nav-link" href="<?= site_url('publikasi/kategori/2') ?>">Publikasi Pengabdian</a>
                     </li>
                 </ul>
             </li>

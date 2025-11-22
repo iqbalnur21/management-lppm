@@ -11,7 +11,7 @@ Daftar Publikasi Ilmiah
         <th>Judul Artikel</th>
         <!-- <th>Penulis Utama</th> -->
         <th>Jenis Publikasi</th>
-        <th>Tahun</th>
+        <th>Tanggal</th>
         <th class="text-center">Status</th>
         <?php if (session('role_id') == 1) : ?>
             <th class="action-column text-center">Aksi</th>
@@ -26,7 +26,7 @@ Daftar Publikasi Ilmiah
             <!-- <td><? //= esc($value['nama_lengkap']) 
                         ?></td> -->
             <td><?= esc($value['jenis_publikasi']) ?></td>
-            <td><?= esc($value['tahun']) ?></td>
+            <td><?= esc($value['tanggal_terbit']) ?></td>
 
             <?php if (session('role_id') == 1 || session('role_id') == 3) : ?>
                 <td class="text-center">
