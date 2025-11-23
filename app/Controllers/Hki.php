@@ -199,6 +199,12 @@ class Hki extends BaseController
                 'required' => 'Jenis Hki Tidak Boleh Kosong',
             ]
         ],
+        'pemilik_hak' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Pemilik Hak Tidak Boleh Kosong',
+            ]
+        ],
         'id_penelitian_terkait' => [
             'rules' => 'required',
             'errors' => [
