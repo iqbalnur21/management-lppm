@@ -33,6 +33,7 @@ class Auth extends BaseController
                 $params = [
                     'user_id' => $user->id,
                     'username' => $user->username,
+                    'name' => $user->name,
                     'role_id' => $user->role_id
                 ];
                 session()->set($params);

@@ -100,13 +100,13 @@ class Dashboard extends BaseController
         $builderPenelitian = $penelitianModel->builder()
             ->select('id_penelitian as id, judul_penelitian as judul, penelitian.created_at as tgl_dibuat, penelitian.status, "Penelitian" as tipe, "penelitian" as variable, users.name as nama_pengaju')
             ->join('users', 'users.id = penelitian.user_id')
-            ->where('penelitian.status', 'menunggu');
+            ->where('penelitian.status', 'belum_terverifikasi');
         $builderPengabdian = $pengabdianModel->builder()
             ->select('id_pengabdian as id, judul_pengabdian as judul, pengabdian.created_at as tgl_dibuat, pengabdian.status, "Pengabdian" as tipe, "pengabdian" as variable, users.name as nama_pengaju')
             ->join('users', 'users.id = pengabdian.user_id')
-            ->where('pengabdian.status', 'menunggu');
+            ->where('pengabdian.status', 'belum_terverifikasi');
         $unionQuery = $builderPenelitian->getCompiledSelect() . ' UNION ' . $builderPengabdian->getCompiledSelect();
-        $data['usulan_menunggu'] = $db->query($unionQuery . " ORDER BY tgl_dibuat DESC LIMIT 5")->getResultArray();
+        $data['usulan_belum_terverifikasi'] = $db->query($unionQuery . " ORDER BY tgl_dibuat DESC LIMIT 5")->getResultArray();
 
         // 5. Data untuk "Usulan Perlu Revisi" (Tickets)
         // ... (Tidak ada perubahan di bagian ini) ...

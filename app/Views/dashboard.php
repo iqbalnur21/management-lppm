@@ -13,12 +13,12 @@ Dashboard
                 <div class="card-stats">
                     <div class="card-stats-title">Statistik Usulan
                     </div>
-                    <div class="card-stats-items">
-                        <div class="card-stats-item">
+                    <div class="card-stats-items justify-content-around">
+                        <div class="card-stats-item flex-fill">
                             <div class="card-stats-item-count"><?= esc($total_belum_diverifikasi) ?></div>
                             <div class="card-stats-item-label">Belum Terverifikasi</div>
                         </div>
-                        <div class="card-stats-item">
+                        <div class="card-stats-item flex-fill">
                             <div class="card-stats-item-count"><?= esc($total_diverifikasi) ?></div>
                             <div class="card-stats-item-label">Terverifikasi</div>
                         </div>
@@ -91,26 +91,22 @@ Dashboard
                                 <th>Tipe</th>
                                 <th>Judul</th>
                                 <th>Pengaju</th>
-                                <th>Status</th>
                                 <?php if (session('role_id') != 3) : ?>
                                     <th>Action</th>
                                 <?php endif; ?>
                             </tr>
-                            <?php if (empty($usulan_menunggu)): ?>
+                            <?php if (empty($usulan_belum_terverifikasi)): ?>
                                 <tr>
                                     <td colspan="5" class="text-center">Tidak ada usulan yang menunggu verifikasi.</td>
                                 </tr>
                             <?php else: ?>
-                                <?php foreach ($usulan_menunggu as $usulan): ?>
+                                <?php foreach ($usulan_belum_terverifikasi as $usulan): ?>
                                     <tr>
                                         <td>
                                             <span class="badge <?= $usulan['tipe'] == 'Penelitian' ? 'badge-primary' : 'badge-info' ?>"><?= esc($usulan['tipe']) ?></span>
                                         </td>
                                         <td><?= esc(substr($usulan['judul'], 0, 40)) ?>...</td>
                                         <td class="font-weight-600"><?= esc($usulan['nama_pengaju']) ?></td>
-                                        <td>
-                                            <div class="badge badge-warning"><?= esc($usulan['status']) ?></div>
-                                        </td>
                                         <?php if (session('role_id') != 3) : ?>
                                             <td>
                                                 <a href="<?= site_url($usulan['variable'] . '/' . $usulan['id'] . '/edit') ?>" class="btn btn-primary">Detail</a>
@@ -145,10 +141,10 @@ Dashboard
                             </div>
                         <?php else: ?>
                             <?php
-                                $link = (session('role_id') != 3) 
-                                    ? site_url($usulan['variable'] . '/' . $usulan['id'] . '/edit') 
-                                    : '#';
-                                foreach ($total_belum_diverifikasi as $usulan): ?>
+                            foreach ($usulan_belum_terverifikasi as $usulan):
+                                $link = (session('role_id') != 3)
+                                    ? site_url($usulan['variable'] . '/' . $usulan['id'] . '/edit')
+                                    : '#'; ?>
                                 <a href="<?= $link ?>" class="ticket-item">
                                     <div class="ticket-title">
                                         <h4><?= esc(substr($usulan['judul'], 0, 35)) ?>...</h4>

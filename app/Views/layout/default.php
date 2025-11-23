@@ -63,38 +63,40 @@
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg <?= $notifikasi ? 'beep' : '' ?>" aria-expanded="false"><i class="far fa-bell"></i></a>
-                        <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                            <div class="dropdown-header">Notifikasi
-                                <div class="float-right">
-                                    <a href="#">Tandai Semua Telah Dibaca</a>
+                    <?php if (session('role_id') != 1): ?>
+
+                        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg <?= $notifikasi ? 'beep' : '' ?>" aria-expanded="false"><i class="far fa-bell"></i></a>
+                            <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                                <div class="dropdown-header">Notifikasi
+                                    <div class="float-right">
+                                        <a href="#">Tandai Semua Telah Dibaca</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="dropdown-list-content dropdown-list-icons" tabindex="3" style="overflow: hidden; outline: none;">
-                                <?php if (empty($notifikasi)) : ?>
-                                    <a href="#" class="dropdown-item dropdown-item-unread justify-content-center">
-                                        <div class="dropdown-item-desc">
-                                            Tidak ada notifikasi
-                                        </div>
-                                    </a>
-                                <?php else : ?>
-                                    <?php foreach ($notifikasi as $item) :
-                                        $isPenelitian = $item['jenis_notifikasi'] == 1;
-                                        $jenis = $isPenelitian ? 'penelitian' : 'pengabdian';
-                                    ?>
-                                        <a href="<?= site_url($jenis . '/' . $item['id'] . '/show') ?>" class="dropdown-item">
-                                            <div class="dropdown-item-icon <?= $isPenelitian ? 'bg-success' : 'bg-info' ?> text-white align-self-center">
-                                                <i class="<?= $isPenelitian ? 'fas fa-flask' : 'fas fa-hands-helping' ?>"></i>
-                                            </div>
+                                <div class="dropdown-list-content dropdown-list-icons" tabindex="3" style="overflow: hidden; outline: none;">
+                                    <?php if (empty($notifikasi)) : ?>
+                                        <a href="#" class="dropdown-item dropdown-item-unread justify-content-center">
                                             <div class="dropdown-item-desc">
-                                                <?= $item['judul'] ?>
-                                                <div class="time text-primary"><?= $isPenelitian ? 'Penelitian' : 'Pengabdian' ?></div>
+                                                Tidak ada notifikasi
                                             </div>
                                         </a>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </div>
-                            <!-- <div class="dropdown-list-content dropdown-list-icons" tabindex="3" style="overflow: hidden; outline: none;">
+                                    <?php else : ?>
+                                        <?php foreach ($notifikasi as $item) :
+                                            $isPenelitian = $item['jenis_notifikasi'] == 1;
+                                            $jenis = $isPenelitian ? 'penelitian' : 'pengabdian';
+                                        ?>
+                                            <a href="<?= site_url($jenis . '/' . $item['id'] . '/show') ?>" class="dropdown-item">
+                                                <div class="dropdown-item-icon <?= $isPenelitian ? 'bg-success' : 'bg-info' ?> text-white align-self-center">
+                                                    <i class="<?= $isPenelitian ? 'fas fa-flask' : 'fas fa-hands-helping' ?>"></i>
+                                                </div>
+                                                <div class="dropdown-item-desc">
+                                                    <?= $item['judul'] ?>
+                                                    <div class="time text-primary"><?= $isPenelitian ? 'Penelitian' : 'Pengabdian' ?></div>
+                                                </div>
+                                            </a>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
+                                <!-- <div class="dropdown-list-content dropdown-list-icons" tabindex="3" style="overflow: hidden; outline: none;">
                                 <a href="#" class="dropdown-item dropdown-item-unread">
                                     <div class="dropdown-item-icon bg-primary text-white">
                                         <i class="fas fa-code"></i>
@@ -141,14 +143,15 @@
                                     </div>
                                 </a>
                             </div> -->
-                            <div id="ascrail2002" class="nicescroll-rails nicescroll-rails-vr" style="width: 9px; z-index: 1000; cursor: default; position: absolute; top: 58px; left: 341px; height: 350px; opacity: 0.3; display: block;">
-                                <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 7px; height: 306px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;"></div>
+                                <div id="ascrail2002" class="nicescroll-rails nicescroll-rails-vr" style="width: 9px; z-index: 1000; cursor: default; position: absolute; top: 58px; left: 341px; height: 350px; opacity: 0.3; display: block;">
+                                    <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 7px; height: 306px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;"></div>
+                                </div>
+                                <div id="ascrail2002-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 9px; z-index: 1000; top: 399px; left: 0px; position: absolute; cursor: default; display: none; width: 341px; opacity: 0.3;">
+                                    <div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 7px; width: 350px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px; left: 0px;"></div>
+                                </div>
                             </div>
-                            <div id="ascrail2002-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 9px; z-index: 1000; top: 399px; left: 0px; position: absolute; cursor: default; display: none; width: 341px; opacity: 0.3;">
-                                <div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 7px; width: 350px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px; left: 0px;"></div>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    <?php endif ?>
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="<?= base_url() ?>/template_stisla/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
                             <div class="d-sm-none d-lg-inline-block">Hi, <?= session('username') ?></div>
