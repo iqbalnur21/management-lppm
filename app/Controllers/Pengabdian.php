@@ -133,7 +133,7 @@ class Pengabdian extends BaseController
     public function remove($id = null)
     {
         $this->models->delete($id);
-        return redirect()->to(site_url($this->variable))->with('success', 'Data Berhasil Dihapus');
+        return redirect()->to(site_url($this->variable))->with('warning', 'Data Berhasil Dihapus');
     }
 
     /**
@@ -150,7 +150,7 @@ class Pengabdian extends BaseController
         } else {
             $this->models->purgeDeleted();
         }
-        return redirect()->to(site_url($this->variable . '/trash'))->with('success', 'Data Berhasil Dihapus');
+        return redirect()->to(site_url($this->variable))->with('warning', 'Data Berhasil Dihapus');
     }
     public function trash()
     {
