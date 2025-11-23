@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\NotifikasiModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -54,5 +55,8 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = service('session');
+        $notifModel = new NotifikasiModel();
+        $this->notifikasiData = $notifModel->getNotifications();
+        service('renderer')->setVar('notifikasi', $this->notifikasiData);
     }
 }

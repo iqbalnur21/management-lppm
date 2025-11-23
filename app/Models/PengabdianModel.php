@@ -29,6 +29,7 @@ class PengabdianModel extends Model
         'tanggal_selesai',
         'status',
         'catatan_verifikator',
+        'dibaca',
         'file_surat_tugas',
         'created_at',
         'updated_at',

@@ -148,6 +148,7 @@ class Data extends Seeder
                 'jumlah_dana'       => 50000000,
                 'status'            => 'menunggu',
                 'catatan_verifikator' => null,
+                'dibaca' => 1,
                 'created_at'        => $time->createFromDate(2025, 10, 1),
                 'updated_at'        => $time->createFromDate(2025, 10, 1),
             ],
@@ -163,6 +164,7 @@ class Data extends Seeder
                 'jumlah_dana'       => 150000000,
                 'status'            => 'revisi',
                 'catatan_verifikator' => 'Mohon perbaiki RAB dan metodologi.',
+                'dibaca' => '0 perbaiki RAB dan metodologi.',
                 'created_at'        => $time->createFromDate(2025, 9, 15),
                 'updated_at'        => $time->createFromDate(2025, 9, 20),
             ],
@@ -178,6 +180,7 @@ class Data extends Seeder
                 'jumlah_dana'       => 75000000,
                 'status'            => 'diverifikasi',
                 'catatan_verifikator' => null,
+                'dibaca' => 1,
                 'created_at'        => $time->createFromDate(2025, 8, 5),
                 'updated_at'        => $time->createFromDate(2025, 8, 10),
             ],
@@ -193,6 +196,7 @@ class Data extends Seeder
                 'jumlah_dana'       => 40000000,
                 'status'            => 'selesai',
                 'catatan_verifikator' => null,
+                'dibaca' => 1,
                 'created_at'        => $time->createFromDate(2025, 7, 10),
                 'updated_at'        => $time->createFromDate(2025, 7, 15),
             ],
@@ -208,6 +212,7 @@ class Data extends Seeder
                 'jumlah_dana'       => 25000000,
                 'status'            => 'menunggu',
                 'catatan_verifikator' => null,
+                'dibaca' => 0,
                 'created_at'        => $time->createFromDate(2025, 10, 5),
                 'updated_at'        => $time->createFromDate(2025, 10, 5),
             ],
@@ -233,6 +238,7 @@ class Data extends Seeder
                 'tanggal_mulai'     => '2025-09-01',
                 'tanggal_selesai'   => '2025-11-01',
                 'status'            => 'menunggu',
+                'dibaca'            => 0,
                 'created_at'        => $time->createFromDate(2025, 8, 20),
                 'updated_at'        => $time->createFromDate(2025, 8, 20),
             ],
@@ -251,6 +257,7 @@ class Data extends Seeder
                 'tanggal_mulai'     => '2025-10-01',
                 'tanggal_selesai'   => '2025-10-02',
                 'status'            => 'diverifikasi',
+                'dibaca'            => 1,
                 'created_at'        => $time->createFromDate(2025, 9, 10),
                 'updated_at'        => $time->createFromDate(2025, 9, 11),
             ],
@@ -269,6 +276,7 @@ class Data extends Seeder
                 'tanggal_mulai'     => '2025-11-01',
                 'tanggal_selesai'   => '2025-11-30',
                 'status'            => 'revisi',
+                'dibaca'            => 1,
                 'created_at'        => $time->createFromDate(2025, 10, 2),
                 'updated_at'        => $time->createFromDate(2025, 10, 3),
             ],
@@ -390,41 +398,45 @@ class Data extends Seeder
         $notifikasi = [
             // Notif untuk Penelitian Budi (ID 1) yang 'Menunggu' - Ditujukan ke Staf LPPM
             [
-                'id_penelitian_pengabdian' => 1,
+                'id_penelitian' => 1,
+                'id_pengabdian' => 0,
                 'status_notifikasi'        => 0, // Belum Dibaca
                 'status_surat'             => 3, // Menunggu
-                'jenis_notifikasi'         => 'Penelitian',
-                'tampil_di'                => 'Staff LPPM', // Notif untuk verifikator
+                'jenis_notifikasi'         => 1,
+                'tampil_di'                => 2, // Notif untuk verifikator
                 'created_at'               => $time->now(),
                 'updated_at'               => $time->now(),
             ],
             // Notif untuk Penelitian Indah (ID 2) yang 'Revisi' - Ditujukan ke Dosen
             [
-                'id_penelitian_pengabdian' => 2,
+                'id_penelitian' => 2,
+                'id_pengabdian' => 0,
                 'status_notifikasi'        => 0, // Belum Dibaca
                 'status_surat'             => 2, // Revisi
-                'jenis_notifikasi'         => 'Penelitian',
-                'tampil_di'                => 'Dosen', // Notif balikan ke dosen
+                'jenis_notifikasi'         => 1,
+                'tampil_di'                => 2, // Notif balikan ke dosen
                 'created_at'               => $time->now(),
                 'updated_at'               => $time->now(),
             ],
             // Notif untuk Pengabdian Ahmad (ID 2) yang 'Diverifikasi' - Ditujukan ke Dosen
             [
-                'id_penelitian_pengabdian' => 2,
+                'id_penelitian' => 0,
+                'id_pengabdian' => 1,
                 'status_notifikasi'        => 1, // Sudah Dibaca
                 'status_surat'             => 0, // Diverifikasi
-                'jenis_notifikasi'         => 'Pengabdian',
-                'tampil_di'                => 'Dosen', 
+                'jenis_notifikasi'         => 2,
+                'tampil_di'                => 3, 
                 'created_at'               => $time->now(),
                 'updated_at'               => $time->now(),
             ],
             // Notif untuk Penelitian Ahmad (ID 4) yang 'Selesai' - Ditujukan ke Dosen
             [
-                'id_penelitian_pengabdian' => 4,
+                'id_penelitian' => 0,
+                'id_pengabdian' => 2,
                 'status_notifikasi'        => 1, // Sudah Dibaca
                 'status_surat'             => 1, // Selesai
-                'jenis_notifikasi'         => 'Penelitian',
-                'tampil_di'                => 'Dosen',
+                'jenis_notifikasi'         => 2,
+                'tampil_di'                => 3,
                 'created_at'               => $time->now(),
                 'updated_at'               => $time->now(),
             ],

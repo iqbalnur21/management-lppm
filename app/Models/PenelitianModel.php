@@ -28,6 +28,7 @@ class PenelitianModel extends Model
         'file_laporan_akhir',
         'status',
         'catatan_verifikator',
+        'dibaca',
         'file_proposal',
         'created_at',
         'updated_at',

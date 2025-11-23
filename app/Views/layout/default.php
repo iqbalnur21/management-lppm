@@ -63,7 +63,7 @@
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep" aria-expanded="false"><i class="far fa-bell"></i></a>
+                    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg <?= $notifikasi ? 'beep' : '' ?>" aria-expanded="false"><i class="far fa-bell"></i></a>
                         <div class="dropdown-menu dropdown-list dropdown-menu-right">
                             <div class="dropdown-header">Notifikasi
                                 <div class="float-right">
@@ -71,6 +71,30 @@
                                 </div>
                             </div>
                             <div class="dropdown-list-content dropdown-list-icons" tabindex="3" style="overflow: hidden; outline: none;">
+                                <?php if (empty($notifikasi)) : ?>
+                                    <a href="#" class="dropdown-item dropdown-item-unread justify-content-center">
+                                        <div class="dropdown-item-desc">
+                                            Tidak ada notifikasi
+                                        </div>
+                                    </a>
+                                <?php else : ?>
+                                    <?php foreach ($notifikasi as $item) :
+                                        $isPenelitian = $item['jenis_notifikasi'] == 1;
+                                        $jenis = $isPenelitian ? 'penelitian' : 'pengabdian';
+                                    ?>
+                                        <a href="<?= site_url($jenis . '/' . $item['id'] . '/show') ?>" class="dropdown-item">
+                                            <div class="dropdown-item-icon <?= $isPenelitian ? 'bg-success' : 'bg-info' ?> text-white align-self-center">
+                                                <i class="<?= $isPenelitian ? 'fas fa-flask' : 'fas fa-hands-helping' ?>"></i>
+                                            </div>
+                                            <div class="dropdown-item-desc">
+                                                <?= $item['judul'] ?>
+                                                <div class="time text-primary"><?= $isPenelitian ? 'Penelitian' : 'Pengabdian' ?></div>
+                                            </div>
+                                        </a>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                            <!-- <div class="dropdown-list-content dropdown-list-icons" tabindex="3" style="overflow: hidden; outline: none;">
                                 <a href="#" class="dropdown-item dropdown-item-unread">
                                     <div class="dropdown-item-icon bg-primary text-white">
                                         <i class="fas fa-code"></i>
@@ -116,7 +140,7 @@
                                         <div class="time">Yesterday</div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> -->
                             <div id="ascrail2002" class="nicescroll-rails nicescroll-rails-vr" style="width: 9px; z-index: 1000; cursor: default; position: absolute; top: 58px; left: 341px; height: 350px; opacity: 0.3; display: block;">
                                 <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 7px; height: 306px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;"></div>
                             </div>

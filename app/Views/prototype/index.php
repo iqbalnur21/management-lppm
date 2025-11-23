@@ -27,7 +27,7 @@ Daftar Prototype
             <td><?= esc($value['deskripsi']) ?></td>
             <!-- <td><? //= esc($value['link_video_demo']) 
                         ?></td> -->
-            <?php if (session('role_id') != 2) : ?>
+            <?php if (session('role_id') == 1 || session('role_id') == 3) : ?>
                 <td class="text-center">
                     <?php
                     $status_class = '';

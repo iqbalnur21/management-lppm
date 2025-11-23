@@ -46,7 +46,11 @@ class Pengabdian extends BaseController
      */
     public function show($id = null)
     {
-        //
+        $data['title'] = $this->title;
+        $data['variable'] = $this->variable;
+        $data['data'] = [$this->models->where(['id_pengabdian' => $id])->first()];
+        
+        return view($data['variable'] . '/index', $data);
     }
 
     /**

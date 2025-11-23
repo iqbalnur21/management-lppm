@@ -2274,8 +2274,8 @@ a.dropdown-item:focus, a.dropdown-item:active, a.dropdown-item.active {
   color: #fff;
 }
 .dropdown-list .dropdown-item.dropdown-item-unread {
-  background-color: #fbfbfb;
-  border-bottom-color: #f2f2f2;
+  background-color: #e3eaef;
+  border-bottom-color: #e3eaef;
 }
 .dropdown-list .dropdown-item.dropdown-item-unread:focus .dropdown-item-desc {
   color: #6c757d !important;

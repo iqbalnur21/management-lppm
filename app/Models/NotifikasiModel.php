@@ -49,12 +49,53 @@ class NotifikasiModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findBasedApp($id)
+    public function getNotifications()
     {
-        $data = $this
-            ->where('app', $id)
-            ->orWhere('app', 0)
-            ->findAll();
-        return $data;
+        // Ambil penelitian
+        $penelitian = $this->db->table('penelitian')
+            ->select('
+            id_penelitian as id,
+            judul_penelitian AS judul,
+            status,
+            dibaca,
+            updated_at
+        ')
+            ->get()
+            ->getResultArray();
+
+        // Tambahkan jenis_notifikasi = 1
+        foreach ($penelitian as &$p) {
+            $p['jenis_notifikasi'] = 1;
+        }
+
+        // Ambil pengabdian
+        $pengabdian = $this->db->table('pengabdian')
+            ->select('
+            id_pengabdian as id,
+            judul_pengabdian AS judul,
+            status,
+            dibaca,
+            updated_at
+        ')
+            ->get()
+            ->getResultArray();
+
+        // Tambahkan jenis_notifikasi = 2
+        foreach ($pengabdian as &$g) {
+            $g['jenis_notifikasi'] = 2;
+        }
+
+        // Gabungkan
+        $combined = array_merge($penelitian, $pengabdian);
+
+        // Urutkan berdasarkan updated_at DESC
+        usort($combined, function ($a, $b) {
+            return strtotime($b['updated_at']) - strtotime($a['updated_at']);
+        });
+
+        // var_dump($combined);
+        // die;
+        
+        return $combined;
     }
 }
