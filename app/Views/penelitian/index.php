@@ -29,7 +29,7 @@ Daftar Penelitian
                         ?></td> -->
             <td><?= esc($value['skema_penelitian']) ?></td>
             <td><?= esc($value['tanggal_penelitian']) ?></td>
-            <?php if (session('role_id') != 2) : ?>
+            <?php if (session('role_id') == 1 || session('role_id') == 4) : ?>
                 <td class="text-center">
                     <?php
                     $status_class = '';
