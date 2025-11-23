@@ -9,10 +9,8 @@ Edit Data Publikasi: <?= esc($data['judul_artikel']) ?>
     <h4>Formulir Edit Data Publikasi</h4>
     <?php 
         $statusColor = [
-            'menunggu' => 'secondary',
-            'revisi' => 'warning',
-            'diverifikasi' => 'info',
-            'selesai' => 'success'
+            'belum_terverifikasi' => 'secondary',
+            'terverifikasi' => 'success',
         ]; 
     ?>
     <span class="badge badge-<?= $statusColor[$data['status']] ?? 'secondary' ?>">

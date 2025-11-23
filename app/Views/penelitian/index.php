@@ -32,16 +32,10 @@ Daftar Penelitian
                     <?php
                     $status_class = '';
                     switch ($value['status']) {
-                        case 'diverifikasi':
+                        case 'terverifikasi':
                             $status_class = 'badge-primary';
                             break;
-                        case 'selesai':
-                            $status_class = 'badge-success';
-                            break;
-                        case 'revisi':
-                            $status_class = 'badge-warning';
-                            break;
-                        default: // menunggu
+                        default:
                             $status_class = 'badge-secondary';
                             break;
                     }
@@ -62,10 +56,8 @@ Daftar Penelitian
                 <td class="text-center">
                     <?php
                     $options = [
-                        'diverifikasi' => 'Diverifikasi',
-                        'selesai' => 'Selesai',
-                        'revisi' => 'Revisi',
-                        'menunggu' => 'Menunggu'
+                        'terverifikasi' => 'Terverifikasi',
+                        'belum_terverifikasi' => 'Belum Terverifikasi',
                     ];
                     ?>
                     <select name="status" data-type="penelitian" data-id="<?= $value['id_penelitian'] ?>" data-url="/penelitian/updateStatus/<?= $value['id_penelitian'] ?>" class="form-control confirm-btn">

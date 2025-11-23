@@ -33,7 +33,7 @@ class Dashboard extends BaseController
         $countPengabdian = $pengabdianModel->select('status, COUNT(*) as total')
             ->groupBy('status')
             ->findAll();
-        $statusCounts = ['menunggu' => 0, 'revisi' => 0, 'diverifikasi' => 0, 'selesai' => 0];
+        $statusCounts = ['terverifikasi' => 0, 'belum_terverifikasi' => 0];
         foreach ($countPenelitian as $row) {
             if (isset($statusCounts[$row['status']])) {
                 $statusCounts[$row['status']] += $row['total'];
@@ -45,9 +45,8 @@ class Dashboard extends BaseController
             }
         }
         $data['total_usulan']       = array_sum($statusCounts);
-        $data['total_menunggu']     = $statusCounts['menunggu'];
-        $data['total_revisi']       = $statusCounts['revisi'];
-        $data['total_diverifikasi'] = $statusCounts['diverifikasi'];
+        $data['total_diverifikasi'] = $statusCounts['terverifikasi'];
+        $data['total_belum_diverifikasi'] = $statusCounts['belum_terverifikasi'];
         $total_dana_penelitian = $penelitianModel->selectSum('jumlah_dana')->get()->getRow()->jumlah_dana ?? 0;
         $total_dana_pengabdian = $pengabdianModel->selectSum('jumlah_dana')->get()->getRow()->jumlah_dana ?? 0;
         $data['total_dana_all'] = $total_dana_penelitian + $total_dana_pengabdian;

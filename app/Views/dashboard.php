@@ -15,16 +15,12 @@ Dashboard
                     </div>
                     <div class="card-stats-items">
                         <div class="card-stats-item">
-                            <div class="card-stats-item-count"><?= esc($total_menunggu) ?></div>
-                            <div class="card-stats-item-label">Menunggu</div>
-                        </div>
-                        <div class="card-stats-item">
-                            <div class="card-stats-item-count"><?= esc($total_revisi) ?></div>
-                            <div class="card-stats-item-label">Revisi</div>
+                            <div class="card-stats-item-count"><?= esc($total_belum_diverifikasi) ?></div>
+                            <div class="card-stats-item-label">Belum Terverifikasi</div>
                         </div>
                         <div class="card-stats-item">
                             <div class="card-stats-item-count"><?= esc($total_diverifikasi) ?></div>
-                            <div class="card-stats-item-label">Diverifikasi</div>
+                            <div class="card-stats-item-label">Terverifikasi</div>
                         </div>
                     </div>
                 </div>
@@ -135,16 +131,16 @@ Dashboard
                     <div class="card-icon">
                         <i class="fas fa-edit"></i>
                     </div>
-                    <h4><?= esc($total_revisi) ?></h4>
-                    <div class="card-description">Usulan Perlu Revisi</div>
+                    <h4><?= esc($total_belum_diverifikasi) ?></h4>
+                    <div class="card-description">Usulan Perlu Diverifikasi</div>
                 </div>
                 <div class="card-body p-0">
                     <div class="tickets-list">
 
-                        <?php if (empty($usulan_revisi)): ?>
+                        <?php if (empty($total_belum_diverifikasi)): ?>
                             <div class="ticket-item">
                                 <div class="ticket-title">
-                                    <h4>Tidak ada data revisi</h4>
+                                    <h4>Semua data sudah diverifikasi</h4>
                                 </div>
                             </div>
                         <?php else: ?>
@@ -152,7 +148,7 @@ Dashboard
                                 $link = (session('role_id') != 3) 
                                     ? site_url($usulan['variable'] . '/' . $usulan['id'] . '/edit') 
                                     : '#';
-                                foreach ($usulan_revisi as $usulan): ?>
+                                foreach ($total_belum_diverifikasi as $usulan): ?>
                                 <a href="<?= $link ?>" class="ticket-item">
                                     <div class="ticket-title">
                                         <h4><?= esc(substr($usulan['judul'], 0, 35)) ?>...</h4>
