@@ -27,7 +27,7 @@ Daftar Hak Kekayaan Intelektual (HKI)
                         ?></td> -->
             <td><?= esc($value['jenis_hki']) ?></td>
             <td><?= esc($value['nomor_pendaftaran']) ?></td>
-            <?php if (session('role_id') == 1 || session('role_id') == 3) : ?>
+            <?php if (session('role_id') != 2) : ?>
                 <td class="text-center">
                     <?php
                     $status_class = '';

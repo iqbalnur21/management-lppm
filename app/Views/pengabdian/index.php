@@ -43,7 +43,7 @@ Daftar Pengabdian Masyarakat
                     <? //= $value['file_surat_tugas'] 
                     ?>
                 </a></td> -->
-            <?php if (session('role_id') == 1 || session('role_id') == 3) : ?>
+            <?php if (session('role_id') != 2) : ?>
                 <td class="text-center">
                     <?php
                     $status_class = '';
