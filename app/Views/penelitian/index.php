@@ -15,6 +15,8 @@ Daftar Penelitian
         <th class="text-center">Status</th>
         <?php if (session('role_id') == 1) : ?>
             <th class="action-column text-center">Aksi</th>
+        <?php elseif (session('role_id') == 3) : ?>
+            <th class="action-column text-center" style="min-width: 150px;">Cetak Surat</th>
         <?php endif; ?>
     </tr>
 </thead>
@@ -40,7 +42,7 @@ Daftar Penelitian
                             break;
                     }
                     ?>
-                    <span class="badge <?= $status_class ?>"><?= ucfirst(esc($value['status'])) ?></span>
+                    <span class="badge <?= $status_class ?>"><?= ucfirst($value['status'] == 'terverifikasi' ? 'Terverifikasi' : 'Belum Terverifikasi') ?></span>
                 </td>
                 <?php if (session('role_id') == 1) : ?>
                     <td class="text-center" style="width: 200px;">
@@ -50,6 +52,14 @@ Daftar Penelitian
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                         </form>
+                    </td>
+                <?php elseif (session('role_id') == 3) : ?>
+                    <td class="text-center">
+                        <?php if (!empty($value['file_surat_tugas'])): ?>
+                            <a href="<?= base_url('upload/pengabdian/' . $value['file_surat_tugas']) ?>" class="btn btn-info btn-sm" title="Download File" download><i class="fas fa-download"></i> Cetak Surat</a>
+                        <?php else: ?>
+                            <span class="badge badge-secondary">File Tidak Tersedia</span>
+                        <?php endif ?>
                     </td>
                 <?php endif; ?>
             <?php else : ?>

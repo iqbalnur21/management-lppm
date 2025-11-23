@@ -20,6 +20,8 @@ Daftar Pengabdian Masyarakat
         <th class="text-center" style="min-width: 150px;">Status</th>
         <?php if (session('role_id') == 1) : ?>
             <th class="action-column text-center" style="min-width: 150px;">Aksi</th>
+        <?php elseif (session('role_id') == 3) : ?>
+            <th class="action-column text-center" style="min-width: 150px;">Cetak Surat</th>
         <?php endif; ?>
     </tr>
 </thead>
@@ -56,7 +58,7 @@ Daftar Pengabdian Masyarakat
                             break;
                     }
                     ?>
-                    <span class="badge <?= $status_class ?>"><?= ucfirst($value['status']) ?></span>
+                    <span class="badge <?= $status_class ?>"><?= ucfirst($value['status'] == 1 ? 'Terverifikasi' : 'Belum Terverifikasi') ?></span>
                 </td>
             <?php else : ?>
                 <td class="text-center">
@@ -86,6 +88,14 @@ Daftar Pengabdian Masyarakat
                     <?php else : ?>
                         <span class="badge badge-warning text-dark">Sedang di Verifikasi</span>
                     <?php endif; ?>
+                </td>
+            <?php elseif (session('role_id') == 3) : ?>
+                <td class="text-center">
+                    <?php if (!empty($value['file_surat_tugas'])): ?>
+                        <a href="<?= base_url('upload/pengabdian/' . $value['file_surat_tugas']) ?>" class="btn btn-info btn-sm" title="Download File" download><i class="fas fa-download"></i> Cetak Surat</a>
+                    <?php else: ?>
+                        <span class="badge badge-secondary">File Tidak Tersedia</span>
+                    <?php endif ?>
                 </td>
             <?php endif; ?>
         </tr>
