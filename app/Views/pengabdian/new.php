@@ -12,7 +12,7 @@ Formulir Tambah Pengabdian Masyarakat
     <?= csrf_field() ?>
 
     <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">
-    <input type="hidden" name="status" value="menunggu">
+    <input type="hidden" name="status" value="0">
 
     <div class="form-group">
         <label for="judul_pengabdian">Judul Pengabdian</label>

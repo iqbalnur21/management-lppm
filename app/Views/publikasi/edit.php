@@ -7,11 +7,11 @@ Edit Data Publikasi: <?= esc($data['judul_artikel']) ?>
 <?= $this->section('form') ?>
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h4>Formulir Edit Data Publikasi</h4>
-    <?php 
-        $statusColor = [
-            'belum_terverifikasi' => 'secondary',
-            'terverifikasi' => 'success',
-        ]; 
+    <?php
+    $statusColor = [
+        0 => 'secondary',
+        1 => 'success',
+    ];
     ?>
     <span class="badge badge-<?= $statusColor[$data['status']] ?? 'secondary' ?>">
         Status: <?= ucfirst($data['status']) ?>
@@ -85,7 +85,7 @@ Edit Data Publikasi: <?= esc($data['judul_artikel']) ?>
                         <label for="sinta">Peringkat SINTA (Opsional)</label>
                         <select name="sinta" id="sinta" class="form-control <?= isset(session('errors')['sinta']) ? 'is-invalid' : '' ?>">
                             <option value="">-- Tidak Ada --</option>
-                            <?php foreach(['C1','C2','C3','C4','C5','C6'] as $s): ?>
+                            <?php foreach (['C1', 'C2', 'C3', 'C4', 'C5', 'C6'] as $s): ?>
                                 <option value="<?= $s ?>" <?= old('sinta', $data['sinta']) == $s ? 'selected' : '' ?>>Sinta <?= $s ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -96,7 +96,7 @@ Edit Data Publikasi: <?= esc($data['judul_artikel']) ?>
                         <label for="quartile">Quartile (Scopus/WoS) (Opsional)</label>
                         <select name="quartile" id="quartile" class="form-control <?= isset(session('errors')['quartile']) ? 'is-invalid' : '' ?>">
                             <option value="">-- Tidak Ada --</option>
-                            <?php foreach(['Q1','Q2','Q3','Q4'] as $q): ?>
+                            <?php foreach (['Q1', 'Q2', 'Q3', 'Q4'] as $q): ?>
                                 <option value="<?= $q ?>" <?= old('quartile', $data['quartile']) == $q ? 'selected' : '' ?>><?= $q ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -164,7 +164,7 @@ Edit Data Publikasi: <?= esc($data['judul_artikel']) ?>
         </div>
         <?php if (!empty($data['file_artikel'])) : ?>
             <div class="alert alert-info mt-2 p-2">
-                <i class="fas fa-file-pdf"></i> File saat ini: 
+                <i class="fas fa-file-pdf"></i> File saat ini:
                 <a href="<?= base_url('upload/publikasi/' . $data['file_artikel']) ?>" target="_blank" class="font-weight-bold"><?= esc($data['file_artikel']) ?></a>
             </div>
         <?php endif; ?>

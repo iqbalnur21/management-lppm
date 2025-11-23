@@ -32,7 +32,7 @@ Daftar Hak Kekayaan Intelektual (HKI)
                     <?php
                     $status_class = '';
                     switch ($value['status']) {
-                        case 'terverifikasi':
+                        case 1:
                             $status_class = 'badge-primary';
                             break;
                         default:
@@ -46,8 +46,8 @@ Daftar Hak Kekayaan Intelektual (HKI)
                 <td class="text-center">
                     <?php
                     $options = [
-                        'terverifikasi' => 'Terverifikasi',
-                        'belum_terverifikasi' => 'Belum Terverifikasi',
+                        1 => 'Terverifikasi',
+                        0 => 'Belum Terverifikasi',
                     ];
                     ?>
                     <select name="status" data-type="hki" data-id="<?= $value['id_hki'] ?>" data-url="/hki/updateStatus/<?= $value['id_hki'] ?>" class="form-control confirm-btn">
@@ -60,16 +60,12 @@ Daftar Hak Kekayaan Intelektual (HKI)
                 <?php endif; ?>
                 <?php if (session('role_id') == 1) : ?>
                 <td class="text-center" style="width: 200px;">
-                    <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
-                        <a href="<?= site_url('hki/' . $value['id_hki'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                        <form action="<?= site_url('hki/' . $value['id_hki']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                            <?= csrf_field() ?>
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                        </form>
-                    <?php else : ?>
-                        <span class="badge badge-warning text-dark">Sedang di Verifikasi</span>
-                    <?php endif; ?>
+                    <a href="<?= site_url('hki/' . $value['id_hki'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                    <form action="<?= site_url('hki/' . $value['id_hki']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                    </form>
                 </td>
             <?php endif; ?>
         </tr>

@@ -34,7 +34,7 @@ Daftar Penelitian
                     <?php
                     $status_class = '';
                     switch ($value['status']) {
-                        case 'terverifikasi':
+                        case 1:
                             $status_class = 'badge-primary';
                             break;
                         default:
@@ -42,7 +42,7 @@ Daftar Penelitian
                             break;
                     }
                     ?>
-                    <span class="badge <?= $status_class ?>"><?= ucfirst($value['status'] == 'terverifikasi' ? 'Terverifikasi' : 'Belum Terverifikasi') ?></span>
+                    <span class="badge <?= $status_class ?>"><?= ucfirst($value['status'] == 1 ? 'Terverifikasi' : 'Belum Terverifikasi') ?></span>
                 </td>
                 <?php if (session('role_id') == 1) : ?>
                     <td class="text-center" style="width: 200px;">
@@ -66,8 +66,8 @@ Daftar Penelitian
                 <td class="text-center">
                     <?php
                     $options = [
-                        'terverifikasi' => 'Terverifikasi',
-                        'belum_terverifikasi' => 'Belum Terverifikasi',
+                        1 => 'Terverifikasi',
+                        0 => 'Belum Terverifikasi',
                     ];
                     ?>
                     <select name="status" data-type="penelitian" data-id="<?= $value['id_penelitian'] ?>" data-url="/penelitian/updateStatus/<?= $value['id_penelitian'] ?>" class="form-control confirm-btn">

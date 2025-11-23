@@ -32,7 +32,7 @@ Daftar Prototype
                     <?php
                     $status_class = '';
                     switch ($value['status']) {
-                        case 'terverifikasi':
+                        case 1:
                             $status_class = 'badge-primary';
                             break;
                         default:
@@ -40,14 +40,14 @@ Daftar Prototype
                             break;
                     }
                     ?>
-                    <span class="badge <?= $status_class ?>"><?= ucfirst($value['status']) ?></span>
+                    <span class="badge <?= $status_class ?>"><?= $value['status'] == 1 ? 'Terverifikasi' : 'Belum Terverifikasi' ?></span>
                 </td>
             <?php else : ?>
                 <td class="text-center">
                     <?php
                     $options = [
-                        'terverifikasi' => 'Terverifikasi',
-                        'belum_terverifikasi' => 'Belum Terverifikasi',
+                        1 => 'Terverifikasi',
+                        0 => 'Belum Terverifikasi',
                     ];
                     ?>
                     <select name="status" data-type="prototype" data-id="<?= $value['id_prototype'] ?>" data-url="/prototype/updateStatus/<?= $value['id_prototype'] ?>" class="form-control confirm-btn">
@@ -60,14 +60,12 @@ Daftar Prototype
                 <?php endif; ?>
                 <?php if (session('role_id') == 1) : ?>
                 <td class="text-center" style="width: 150px;">
-                    <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
-                        <a href="<?= site_url('prototype/' . $value['id_prototype'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                        <form action="<?= site_url('prototype/' . $value['id_prototype']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                            <?= csrf_field() ?>
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                        </form>
-                    <?php endif; ?>
+                    <a href="<?= site_url('prototype/' . $value['id_prototype'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                    <form action="<?= site_url('prototype/' . $value['id_prototype']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                    </form>
                 </td>
             <?php endif; ?>
         </tr>

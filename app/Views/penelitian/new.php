@@ -13,7 +13,8 @@ Formulir Tambah Data Penelitian
 
     <div class="form-group">
         <label for="judul_penelitian">Judul Penelitian</label>
-        <input type="hidden" name="user_id" id="user_id" class="form-control <?= isset(session('errors')['user_id']) ? 'is-invalid' : '' ?>" value="<?= session('user_id') ?>" autofocus>
+        <input type="hidden" name="user_id" id="user_id" value="<?= session('user_id') ?>">
+        <input type="hidden" name="status" id="status" value="0">
         <input type="text" name="judul_penelitian" id="judul_penelitian" class="form-control <?= isset(session('errors')['judul_penelitian']) ? 'is-invalid' : '' ?>" value="<?= old('judul_penelitian') ?>" autofocus>
         <div class="invalid-feedback">
             <?= session('errors.judul_penelitian') ?>

@@ -26,15 +26,20 @@ class Dashboard extends BaseController
         $data = [];
 
         // 1. Data untuk Kartu Statistik (Widget Atas)
-        // ... (Tidak ada perubahan di bagian ini) ...
+        // Mengambil hitungan berdasarkan status
         $countPenelitian = $penelitianModel->select('status, COUNT(*) as total')
             ->groupBy('status')
             ->findAll();
         $countPengabdian = $pengabdianModel->select('status, COUNT(*) as total')
             ->groupBy('status')
             ->findAll();
-        $statusCounts = ['terverifikasi' => 0, 'belum_terverifikasi' => 0];
+        
+        // PERUBAHAN DI SINI: Menggunakan key integer (1 = terverifikasi, 0 = belum_terverifikasi)
+        $statusCounts = [1 => 0, 0 => 0]; 
+
         foreach ($countPenelitian as $row) {
+            // Pastikan status yang ada di database (misal: 1, 0, revisi, dll) ada di array $statusCounts sebelum dijumlahkan
+            // Jika Anda ingin menghitung status lain, tambahkan key-nya di inisialisasi $statusCounts
             if (isset($statusCounts[$row['status']])) {
                 $statusCounts[$row['status']] += $row['total'];
             }
@@ -44,9 +49,12 @@ class Dashboard extends BaseController
                 $statusCounts[$row['status']] += $row['total'];
             }
         }
+
         $data['total_usulan']       = array_sum($statusCounts);
-        $data['total_diverifikasi'] = $statusCounts['terverifikasi'];
-        $data['total_belum_diverifikasi'] = $statusCounts['belum_terverifikasi'];
+        // PERUBAHAN DI SINI: Mengakses index 1 dan 0
+        $data['total_diverifikasi'] = $statusCounts[1]; 
+        $data['total_belum_diverifikasi'] = $statusCounts[0];
+
         $total_dana_penelitian = $penelitianModel->selectSum('jumlah_dana')->get()->getRow()->jumlah_dana ?? 0;
         $total_dana_pengabdian = $pengabdianModel->selectSum('jumlah_dana')->get()->getRow()->jumlah_dana ?? 0;
         $data['total_dana_all'] = $total_dana_penelitian + $total_dana_pengabdian;
@@ -96,20 +104,23 @@ class Dashboard extends BaseController
         $data['peneliti_teraktif'] = $queryPeneliti->getResultArray();
 
         // 4. Data untuk Tabel "Usulan Menunggu Verifikasi"
-        // ... (Tidak ada perubahan di bagian ini) ...
+        // PERUBAHAN DI SINI: Mengubah 'belum_terverifikasi' menjadi 0
         $builderPenelitian = $penelitianModel->builder()
             ->select('id_penelitian as id, judul_penelitian as judul, penelitian.created_at as tgl_dibuat, penelitian.status, "Penelitian" as tipe, "penelitian" as variable, users.name as nama_pengaju')
             ->join('users', 'users.id = penelitian.user_id')
-            ->where('penelitian.status', 'belum_terverifikasi');
+            ->where('penelitian.status', 0); // Status 0 = Belum Terverifikasi
+
         $builderPengabdian = $pengabdianModel->builder()
             ->select('id_pengabdian as id, judul_pengabdian as judul, pengabdian.created_at as tgl_dibuat, pengabdian.status, "Pengabdian" as tipe, "pengabdian" as variable, users.name as nama_pengaju')
             ->join('users', 'users.id = pengabdian.user_id')
-            ->where('pengabdian.status', 'belum_terverifikasi');
+            ->where('pengabdian.status', 0); // Status 0 = Belum Terverifikasi
+
         $unionQuery = $builderPenelitian->getCompiledSelect() . ' UNION ' . $builderPengabdian->getCompiledSelect();
         $data['usulan_belum_terverifikasi'] = $db->query($unionQuery . " ORDER BY tgl_dibuat DESC LIMIT 5")->getResultArray();
 
         // 5. Data untuk "Usulan Perlu Revisi" (Tickets)
-        // ... (Tidak ada perubahan di bagian ini) ...
+        // ... (Tidak ada perubahan di bagian ini kecuali status revisi diubah menjadi angka jika diperlukan) ...
+        // Catatan: Jika 'revisi' juga berubah menjadi angka di database, harap sesuaikan 'revisi' di bawah ini dengan angka tersebut.
         $builderPenelitianRevisi = $penelitianModel->builder()
             ->select('id_penelitian as id, judul_penelitian as judul, "Penelitian" as tipe, "penelitian" as variable, users.name as nama_pengaju, penelitian.updated_at as tgl_diupdate')
             ->join('users', 'users.id = penelitian.user_id')
