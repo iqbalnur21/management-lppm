@@ -8,17 +8,17 @@ class User extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'users';
-    protected $primaryKey       = 'user_id';
+    protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        "role_id",
+        "name",
         "username",
         "password",
-        "role",
-        "last_login",
         "created_at",
         "updated_at",
         "deleted_at",

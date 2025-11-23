@@ -71,7 +71,7 @@ class Data extends Seeder
                 'updated_at' => $time->now(),
             ], // ID: 5
             [
-                'role_id'  => 2, // staf_lppm (admin)
+                'role_id'  => 4, 
                 'name'     => 'Admin',
                 'username' => 'admin',
                 'password' => password_hash('123456', PASSWORD_DEFAULT),

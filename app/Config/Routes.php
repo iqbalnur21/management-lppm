@@ -34,6 +34,7 @@ $routes->group('', ['filter' => 'isLoggedIn'], static function ($routes) {
     $routes->resource('prototype', ['controller' => 'Prototype']);
     $routes->resource('dosen', ['controller' => 'dosen']);
     $routes->resource('mahasiswa', ['controller' => 'mahasiswa']);
+    $routes->post('user/reset/(:num)', 'User::reset/$1');
     $routes->resource('user', ['controller' => 'user']);
 
     // --- Rute untuk Peran: STAF LPPM ---

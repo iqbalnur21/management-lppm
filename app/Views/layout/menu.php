@@ -65,7 +65,7 @@
                     </li>
                 </ul>
             </li>
-            <?php if (session()->get('role') == 'admin'): ?>
+            <?php if (session('role_id') == 4): ?>
                 <li class="nav-item dropdown <?= $uri->getSegment(1) == 'user' ? 'active' : '' ?>">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-friends"></i><span>Manajemen Data</span></a>
                     <ul class="dropdown-menu">
