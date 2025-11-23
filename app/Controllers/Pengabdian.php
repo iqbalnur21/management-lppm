@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\DosenModel;
+use App\Models\MahasiswaModel;
 use App\Models\PengabdianModel;
 
 class Pengabdian extends BaseController
@@ -19,6 +21,8 @@ class Pengabdian extends BaseController
         $this->request = \Config\Services::request();
         $this->validation = \Config\Services::validation();
         $this->models = new PengabdianModel();
+        $this->dosenModels = new DosenModel();
+        $this->mahasiswaModels = new MahasiswaModel();
     }
     /**
      * Present a view of resource objects
@@ -54,6 +58,8 @@ class Pengabdian extends BaseController
     {
         $data['variable'] = $this->variable;
         $data['title'] = $this->title;
+        $data['list_dosen'] = $this->dosenModels->findAll();
+        $data['list_mahasiswa'] = $this->mahasiswaModels->findAll();
         
         return view($data['variable'] . '/new', $data);
     }
@@ -91,6 +97,8 @@ class Pengabdian extends BaseController
     {
         $data['title'] = $this->title;
         $data['variable'] = $this->variable;
+        $data['list_dosen'] = $this->dosenModels->findAll();
+        $data['list_mahasiswa'] = $this->mahasiswaModels->findAll();
         $data['data'] = $this->models->where(['pengabdian.id_pengabdian' => $id])->first();
         return view($data['variable'] . '/edit', $data);
     }
@@ -182,6 +190,42 @@ class Pengabdian extends BaseController
         return $this->response->setJSON(['success' => true]);
     }
     public array $rules = [
+        'user_id' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'User ID Tidak Boleh Kosong',
+            ]
+        ],
+        'id_dosen' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'ID Dosen Tidak Boleh Kosong',
+            ]
+        ],
+        'id_mahasiswa' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'ID Mahasiswa Tidak Boleh Kosong',
+            ]
+        ],
+        'tema' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Tema Tidak Boleh Kosong',
+            ]
+        ],
+        'durasi' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Durasi Tidak Boleh Kosong',
+            ]
+        ],
+        'tujuan' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Tujuan Tidak Boleh Kosong',
+            ]
+        ],
         'nomor_surat' => [
             'rules' => 'required',
             'errors' => [
@@ -228,6 +272,18 @@ class Pengabdian extends BaseController
             'rules' => 'required',
             'errors' => [
                 'required' => 'Tanggal Selesai Tidak Boleh Kosong',
+            ]
+        ],
+        'status' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Status Tidak Boleh Kosong',
+            ]
+        ],
+        'catatan_verifikator' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Catatan Verifikator Tidak Boleh Kosong',
             ]
         ],
     ];

@@ -86,7 +86,7 @@ Daftar Pengabdian Masyarakat
                 <td class="text-center">
                     <?php if ($value['status'] == 'menunggu' || $value['status'] == 'revisi') : ?>
                         <a href="<?= site_url('pengabdian/' . $value['id_pengabdian'] . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                        <form action="<?= site_url('pengabdian/delete/' . $value['id_pengabdian']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                        <form action="<?= site_url('pengabdian/' . $value['id_pengabdian']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                             <?= csrf_field() ?>
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>

@@ -64,28 +64,22 @@ class CreateLppmTables extends Migration
         $this->forge->addField([
             'id_pengabdian'       => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'user_id'             => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'comment' => 'User ID penginput'],
-
-            // Atribut Baru yang diminta
             'id_dosen'            => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true, 'comment' => 'Ketua Pengabdi'],
             'id_mahasiswa'        => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true, 'comment' => 'Perwakilan Mahasiswa'],
             'tema'                => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
             'durasi'              => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true, 'comment' => 'Contoh: 6 Bulan'],
             'tujuan'              => ['type' => 'TEXT', 'null' => true],
-
             'nomor_surat'         => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
             'judul_pengabdian'    => ['type' => 'VARCHAR', 'constraint' => 255],
             'lokasi_pengabdian'   => ['type' => 'TEXT'],
             'sumber_dana'         => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
             'jumlah_dana'         => ['type' => 'DECIMAL', 'constraint' => '15,2', 'null' => true],
-
-            // Ubah tahun menjadi tanggal
             'tanggal_pelaksanaan' => ['type' => 'DATE', 'null' => true],
             'tanggal_mulai'       => ['type' => 'DATE'],
             'tanggal_selesai'     => ['type' => 'DATE'],
-
-            'file_surat_tugas'    => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
             'status'              => ['type' => 'ENUM("menunggu", "revisi", "diverifikasi", "selesai")', 'default' => 'menunggu'],
             'catatan_verifikator' => ['type' => 'TEXT', 'null' => true],
+            'file_surat_tugas'    => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
             'created_at'          => ['type' => 'DATETIME', 'null' => true],
             'updated_at'          => ['type' => 'DATETIME', 'null' => true],
             'deleted_at'          => ['type' => 'DATETIME', 'null' => true],

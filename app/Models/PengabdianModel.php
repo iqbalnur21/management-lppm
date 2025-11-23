@@ -13,6 +13,12 @@ class PengabdianModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'user_id',
+        'id_dosen',
+        'id_mahasiswa',
+        'tema',
+        'durasi',
+        'tujuan',
         'nomor_surat',
         'judul_pengabdian',
         'lokasi_pengabdian',
@@ -21,10 +27,12 @@ class PengabdianModel extends Model
         'tanggal_pelaksanaan',
         'tanggal_mulai',
         'tanggal_selesai',
+        'status',
+        'catatan_verifikator',
         'file_surat_tugas',
         'created_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected bool $allowEmptyInserts = false;
