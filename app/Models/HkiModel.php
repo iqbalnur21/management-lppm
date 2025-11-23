@@ -20,6 +20,7 @@ class HkiModel extends Model
         'nomor_sertifikat',
         'status',
         'tanggal_penerimaan',
+        'pemilik_hak',
         'file_sertifikat',
         'created_at',
         'updated_at',

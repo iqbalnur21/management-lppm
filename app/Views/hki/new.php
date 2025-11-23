@@ -11,17 +11,30 @@ Formulir Tambah Data HKI
 <form action="<?= site_url('hki') ?>" method="post" autocomplete="off" enctype="multipart/form-data">
     <?= csrf_field() ?>
 
-    <div class="form-group">
-        <label for="judul_ciptaan">Judul Ciptaan</label>
-        <input type="text" name="judul_ciptaan" id="judul_ciptaan" class="form-control <?= isset(session('errors')['judul_ciptaan']) ? 'is-invalid' : '' ?>" value="<?= old('judul_ciptaan') ?>" autofocus>
-        <div class="invalid-feedback">
-            <?= session('errors.judul_ciptaan') ?>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-md-6">
-             <div class="form-group">
+            <div class="form-group">
+                <label for="judul_ciptaan">Judul Ciptaan</label>
+                <input type="text" name="judul_ciptaan" id="judul_ciptaan" class="form-control <?= isset(session('errors')['judul_ciptaan']) ? 'is-invalid' : '' ?>" value="<?= old('judul_ciptaan') ?>" autofocus>
+                <div class="invalid-feedback">
+                    <?= session('errors.judul_ciptaan') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="pemilik_hak">Pemilik Hak</label>
+                <input type="text" name="pemilik_hak" id="pemilik_hak" class="form-control <?= isset(session('errors')['pemilik_hak']) ? 'is-invalid' : '' ?>" value="<?= old('pemilik_hak') ?>" autofocus>
+                <div class="invalid-feedback">
+                    <?= session('errors.pemilik_hak') ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
                 <label for="jenis_hki">Jenis HKI</label>
                 <select name="jenis_hki" id="jenis_hki" class="form-control <?= isset(session('errors')['jenis_hki']) ? 'is-invalid' : '' ?>">
                     <option value="">-- Pilih Jenis --</option>

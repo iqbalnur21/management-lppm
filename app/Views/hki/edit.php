@@ -12,11 +12,24 @@ Edit Data HKI: <?= esc($data['judul_ciptaan']) ?>
     <?= csrf_field() ?>
     <input type="hidden" name="_method" value="PUT">
 
-    <div class="form-group">
-        <label for="judul_ciptaan">Judul Ciptaan</label>
-        <input type="text" name="judul_ciptaan" id="judul_ciptaan" class="form-control <?= isset(session('errors')['judul_ciptaan']) ? 'is-invalid' : '' ?>" value="<?= old('judul_ciptaan', $data['judul_ciptaan']) ?>" autofocus>
-        <div class="invalid-feedback">
-            <?= session('errors.judul_ciptaan') ?>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="judul_ciptaan">Judul Ciptaan</label>
+                <input type="text" name="judul_ciptaan" id="judul_ciptaan" class="form-control <?= isset(session('errors')['judul_ciptaan']) ? 'is-invalid' : '' ?>" value="<?= old('judul_ciptaan', $data['judul_ciptaan']) ?>" autofocus>
+                <div class="invalid-feedback">
+                    <?= session('errors.judul_ciptaan') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="pemilik_hak">Pemilik Hak</label>
+                <input type="text" name="pemilik_hak" id="pemilik_hak" class="form-control <?= isset(session('errors')['pemilik_hak']) ? 'is-invalid' : '' ?>" value="<?= old('pemilik_hak', $data['pemilik_hak']) ?>" autofocus>
+                <div class="invalid-feedback">
+                    <?= session('errors.pemilik_hak') ?>
+                </div>
+            </div>
         </div>
     </div>
 
