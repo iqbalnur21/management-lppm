@@ -55,7 +55,7 @@ Edit Data Pengabdian: <?= esc($data['judul_pengabdian']) ?>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="jumlah_dana">Jumlah Dana</label>
-                <input type="number" name="jumlah_dana" id="jumlah_dana" class="form-control <?= isset(session('errors')['jumlah_dana']) ? 'is-invalid' : '' ?>" value="<?= old('jumlah_dana', $data['jumlah_dana']) ?>">
+                <input type="number" name="jumlah_dana" id="jumlah_dana" class="form-control <?= isset(session('errors')['jumlah_dana']) ? 'is-invalid' : '' ?>" value="<?= currencyNumberFormat(old('jumlah_dana', $data['jumlah_dana'])) ?>">
                 <div class="invalid-feedback">
                     <?= session('errors.jumlah_dana') ?>
                 </div>

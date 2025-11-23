@@ -188,7 +188,7 @@ class Penelitian extends BaseController
         } else {
             $this->models->purgeDeleted();
         }
-        return redirect()->to(site_url($this->variable))->with('warning', 'Data Berhasil Dihapus');
+        return redirect()->to(site_url($this->variable))->with('success', 'Data Berhasil Dihapus');
     }
     public function trash()
     {
