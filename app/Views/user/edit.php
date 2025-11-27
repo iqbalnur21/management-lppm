@@ -65,7 +65,7 @@ Edit User: <?= esc($data['name']) ?>
     </div>
 
     <div class="mt-4">
-        <button type="submit" class="btn btn-success float-right"><i class="fas fa-save"></i> Simpan Perubahan</button>
+        <button type="submit" class="btn btn-success float-right"><i class="fas fa-save"></i> Simpan Data</button>
         <a href="<?= site_url('user') ?>" class="btn btn-secondary float-right mr-2"><i class="fas fa-arrow-left"></i> Batal</a>
     </div>
 </form>

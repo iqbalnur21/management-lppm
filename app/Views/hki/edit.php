@@ -116,7 +116,7 @@ Edit Data HKI: <?= esc($data['judul_ciptaan']) ?>
     </div>
 
     <div>
-        <button type="submit" class="btn btn-success float-right"><i class="fas fa-paper-plane"></i> Simpan Perubahan</button>
+        <button type="submit" class="btn btn-success float-right"><i class="fas fa-paper-plane"></i> Simpan Data</button>
         <a href="<?= site_url('hki') ?>" class="btn btn-secondary float-right mr-2"><i class="fas fa-arrow-left"></i> Batal</a>
     </div>
 </form>

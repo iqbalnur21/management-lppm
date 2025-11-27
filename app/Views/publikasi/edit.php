@@ -163,16 +163,13 @@ Edit Data Publikasi: <?= esc($data['judul_artikel']) ?>
             </div>
         </div>
         <?php if (!empty($data['file_artikel'])) : ?>
-            <div class="alert alert-info mt-2 p-2">
-                <i class="fas fa-file-pdf"></i> File saat ini:
-                <a href="<?= base_url('upload/publikasi/' . $data['file_artikel']) ?>" target="_blank" class="font-weight-bold"><?= esc($data['file_artikel']) ?></a>
-            </div>
+            <p class="mt-1 mb-1"><small>File Sekarang: <a href="<?= base_url('upload/publikasi/' . $data['file_artikel']) ?>" target="_blank">Lihat File</a></small></p>
         <?php endif; ?>
     </div>
 
     <div>
-        <button type="submit" class="btn btn-success float-right"><i class="fas fa-save"></i> Simpan Perubahan</button>
-        <a href="<?= site_url('publikasi') ?>" class="btn btn-secondary float-right mr-2"><i class="fas fa-arrow-left"></i> Batal</a>
+        <button type="submit" class="btn btn-success float-right"><i class="fas fa-save"></i> Simpan Data</button>
+        <a href="<?= site_url($variable . '/kategori/' . $data['jenis_pengabdian_atau_penelitian']) ?>" class="btn btn-secondary float-right mr-2"><i class="fas fa-arrow-left"></i> Batal</a>
     </div>
 </form>
 <?= $this->endSection() ?>

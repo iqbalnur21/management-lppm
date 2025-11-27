@@ -134,7 +134,7 @@ Edit Data Penelitian: <?= esc($data['judul_penelitian']) ?>
                     <div class="invalid-feedback"><?= session('errors.file_surat_tugas') ?></div>
                 </div>
                 <?php if (!empty($data['file_surat_tugas'])) : ?>
-                    <p class="mt-1 mb-1"><small>Current: <a href="<?= base_url('upload/penelitian/surat_tugas/' . $data['file_surat_tugas']) ?>" target="_blank">Lihat File</a></small></p>
+                    <p class="mt-1 mb-1"><small>File Sekarang: <a href="<?= base_url('upload/penelitian/surat_tugas/' . $data['file_surat_tugas']) ?>" target="_blank">Lihat File</a></small></p>
                 <?php endif; ?>
             </div>
         </div>
@@ -148,7 +148,7 @@ Edit Data Penelitian: <?= esc($data['judul_penelitian']) ?>
                     <div class="invalid-feedback"><?= session('errors.file_proposal') ?></div>
                 </div>
                 <?php if (!empty($data['file_proposal'])) : ?>
-                    <p class="mt-1 mb-1"><small>Current: <a href="<?= base_url('upload/penelitian/proposal/' . $data['file_proposal']) ?>" target="_blank">Lihat File</a></small></p>
+                    <p class="mt-1 mb-1"><small>File Sekarang: <a href="<?= base_url('upload/penelitian/proposal/' . $data['file_proposal']) ?>" target="_blank">Lihat File</a></small></p>
                 <?php endif; ?>
             </div>
         </div>
@@ -162,14 +162,14 @@ Edit Data Penelitian: <?= esc($data['judul_penelitian']) ?>
                     <div class="invalid-feedback"><?= session('errors.file_laporan_akhir') ?></div>
                 </div>
                 <?php if (!empty($data['file_laporan_akhir'])) : ?>
-                    <p class="mt-1 mb-1"><small>Current: <a href="<?= base_url('upload/penelitian/laporan/' . $data['file_laporan_akhir']) ?>" target="_blank">Lihat File</a></small></p>
+                    <p class="mt-1 mb-1"><small>File Sekarang: <a href="<?= base_url('upload/penelitian/laporan/' . $data['file_laporan_akhir']) ?>" target="_blank">Lihat File</a></small></p>
                 <?php endif; ?>
             </div>
         </div>
     </div>
 
     <div class="mt-4">
-        <button type="submit" class="btn btn-success float-right"><i class="fas fa-paper-plane"></i> Simpan Perubahan</button>
+        <button type="submit" class="btn btn-success float-right"><i class="fas fa-paper-plane"></i> Simpan Data</button>
         <a href="<?= site_url('penelitian') ?>" class="btn btn-secondary float-right mr-2"><i class="fas fa-arrow-left"></i> Batal</a>
     </div>
 </form>

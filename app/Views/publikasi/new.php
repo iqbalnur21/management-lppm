@@ -136,7 +136,7 @@ Formulir Tambah Data Publikasi
     </div>
 
     <div class="form-group">
-        <label for="file_artikel">Upload File Artikel (PDF)</label>
+        <label for="file_artikel">Upload File</label>
         <div class="custom-file">
             <input type="file" class="custom-file-input <?= isset(session('errors')['file_artikel']) ? 'is-invalid' : '' ?>" id="file_artikel" name="file_artikel" accept=".pdf" onchange="$('#customFileLabel').text(this.files[0].name)">
             <label class="custom-file-label" id="customFileLabel" for="file_artikel">Pilih File</label>
@@ -148,7 +148,7 @@ Formulir Tambah Data Publikasi
 
     <div>
         <button type="submit" class="btn btn-success float-right"><i class="fas fa-paper-plane"></i> Simpan Data</button>
-        <a href="<?= site_url('publikasi') ?>" class="btn btn-secondary float-right mr-2"><i class="fas fa-arrow-left"></i> Batal</a>
+        <a href="<?= site_url($variable . '/kategori/' . url(3)) ?>" class="btn btn-secondary float-right mr-2"><i class="fas fa-arrow-left"></i> Batal</a>
     </div>
 </form>
 <?= $this->endSection() ?>
