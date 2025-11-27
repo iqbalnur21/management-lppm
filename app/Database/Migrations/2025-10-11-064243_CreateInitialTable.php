@@ -221,11 +221,31 @@ class CreateLppmTables extends Migration
         ]);
         $this->forge->addKey('id_notifikasi', true);
         $this->forge->createTable('notifikasi', true);
+
+        $this->forge->addField([
+            'id_kontrak'        => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+            'id_penelitian'     => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
+            'id_pengabdian'     => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
+            'judul_artikel'                     => ['type' => 'VARCHAR', 'constraint' => 255],
+            'jenis_kontrak'          => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'comment' => '1=Penelitian, 2=Pengabdian'],
+            'nomor_kontrak'     => ['type' => 'VARCHAR', 'constraint' => 100],
+            'tanggal_tanda_tangan' => ['type' => 'DATE'],
+            'jumlah_dana_disetujui' => ['type' => 'DECIMAL', 'constraint' => '15,2', 'default' => 0],
+            'tahun_anggaran'    => ['type' => 'YEAR'],
+            'target_luaran'     => ['type' => 'VARCHAR', 'constraint' => 255, 'comment' => 'Contoh: Jurnal Internasional, HKI'],
+            'file_kontrak'      => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true, 'comment' => 'File PDF Kontrak'],
+            'created_by'        => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'comment' => 'ID User Staf LPPM yg input'],
+            'created_at'        => ['type' => 'DATETIME', 'null' => true],
+            'updated_at'        => ['type' => 'DATETIME', 'null' => true],
+            'deleted_at'        => ['type' => 'DATETIME', 'null' => true],
+        ]);
+
+        $this->forge->addKey('id_kontrak', true);
+        $this->forge->createTable('kontrak', true);
     }
 
     public function down()
     {
-        // Drop tabel dalam urutan terbalik
         $this->forge->dropTable('prototype', true);
         $this->forge->dropTable('hki', true);
         $this->forge->dropTable('publikasi', true);
@@ -233,12 +253,11 @@ class CreateLppmTables extends Migration
         $this->forge->dropTable('penelitian', true);
         $this->forge->dropTable('pengabdian_anggota', true);
         $this->forge->dropTable('pengabdian', true);
-        // Hapus tabel baru
         $this->forge->dropTable('mahasiswa', true);
         $this->forge->dropTable('dosen', true);
         $this->forge->dropTable('notifikasi', true);
-
         $this->forge->dropTable('users', true);
         $this->forge->dropTable('roles', true);
+        $this->forge->dropTable('kontrak', true);
     }
 }

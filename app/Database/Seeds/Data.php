@@ -52,7 +52,7 @@ class Data extends Seeder
                 'created_at' => $time->now(),
                 'updated_at' => $time->now(),
             ], // ID: 3
-            
+
             // --- STAF ---
             [
                 'role_id'  => 2, // staf_lppm
@@ -71,7 +71,7 @@ class Data extends Seeder
                 'updated_at' => $time->now(),
             ], // ID: 5
             [
-                'role_id'  => 4, 
+                'role_id'  => 4,
                 'name'     => 'Admin',
                 'username' => 'admin',
                 'password' => password_hash('123456', PASSWORD_DEFAULT),
@@ -142,7 +142,7 @@ class Data extends Seeder
                 'id_mahasiswa'      => null,
                 'judul_penelitian'  => 'Sistem Cerdas untuk Deteksi Penyakit Tanaman Padi',
                 'skema_penelitian'  => 'Penelitian Dasar',
-                'tanggal_penelitian'=> '2025-01-15',
+                'tanggal_penelitian' => '2025-01-15',
                 'tujuan'            => 'Mengembangkan algoritma AI untuk petani lokal.',
                 'sumber_dana'       => 'Internal',
                 'jumlah_dana'       => 50000000,
@@ -158,7 +158,7 @@ class Data extends Seeder
                 'id_mahasiswa'      => 1,
                 'judul_penelitian'  => 'Analisis Big Data untuk Model Transportasi Urban Cerdas',
                 'skema_penelitian'  => 'Penelitian Terapan',
-                'tanggal_penelitian'=> '2025-02-10',
+                'tanggal_penelitian' => '2025-02-10',
                 'tujuan'            => 'Membuat model prediksi kemacetan berbasis data historis.',
                 'sumber_dana'       => 'Dikti',
                 'jumlah_dana'       => 150000000,
@@ -170,11 +170,11 @@ class Data extends Seeder
             ],
             [
                 'user_id'           => 1, // Budi
-                'id_dosen'          => 1, 
+                'id_dosen'          => 1,
                 'id_mahasiswa'      => null,
                 'judul_penelitian'  => 'Pengembangan Framework IoT untuk Smart Home Hemat Energi',
                 'skema_penelitian'  => 'Penelitian Unggulan',
-                'tanggal_penelitian'=> '2025-03-01',
+                'tanggal_penelitian' => '2025-03-01',
                 'tujuan'            => 'Menciptakan purwarupa smart home yang efisien.',
                 'sumber_dana'       => 'Internal',
                 'jumlah_dana'       => 75000000,
@@ -190,7 +190,7 @@ class Data extends Seeder
                 'id_mahasiswa'      => null,
                 'judul_penelitian'  => 'Kajian Keamanan Data pada Aplikasi Mobile Banking',
                 'skema_penelitian'  => 'Penelitian Dasar',
-                'tanggal_penelitian'=> '2025-01-20',
+                'tanggal_penelitian' => '2025-01-20',
                 'tujuan'            => 'Menganalisis celah keamanan pada aplikasi fintech populer.',
                 'sumber_dana'       => 'Internal',
                 'jumlah_dana'       => 40000000,
@@ -206,7 +206,7 @@ class Data extends Seeder
                 'id_mahasiswa'      => 1,
                 'judul_penelitian'  => 'Model Prediksi Kinerja Mahasiswa Menggunakan Machine Learning',
                 'skema_penelitian'  => 'Penelitian Dosen Pemula',
-                'tanggal_penelitian'=> '2025-04-15',
+                'tanggal_penelitian' => '2025-04-15',
                 'tujuan'            => 'Membantu akademik memprediksi mahasiswa yang butuh bimbingan.',
                 'sumber_dana'       => 'Internal',
                 'jumlah_dana'       => 25000000,
@@ -364,7 +364,7 @@ class Data extends Seeder
             [
                 'id_penelitian' => 2,
                 'user_id'       => 7, // Anggota adalah mahasiswa (Kevin)
-                'nama_mahasiswa_atau_eksternal' => 'Kevin Sanjaya', 
+                'nama_mahasiswa_atau_eksternal' => 'Kevin Sanjaya',
                 'peran'         => 'Mahasiswa'
             ],
             [
@@ -425,7 +425,7 @@ class Data extends Seeder
                 'status_notifikasi'        => 1, // Sudah Dibaca
                 'status_surat'             => 0, // Diverifikasi
                 'jenis_notifikasi'         => 2,
-                'tampil_di'                => 3, 
+                'tampil_di'                => 3,
                 'created_at'               => $time->now(),
                 'updated_at'               => $time->now(),
             ],
@@ -442,6 +442,62 @@ class Data extends Seeder
             ],
         ];
         $this->db->table('notifikasi')->insertBatch($notifikasi);
+
+        // ----------------------------------------
+        // 8. Tabel KONTRAK (BARU)
+        // ----------------------------------------
+        // Ini adalah data yang diinput oleh Staf LPPM melalui menu baru "Input Kontrak"
+        $kontrak = [
+            // Kontrak untuk Penelitian ID 1 (Padi AI)
+            [
+                'id_penelitian'         => 1,
+                'id_pengabdian'         => null,
+                'judul_artikel'         => 'Sistem Cerdas untuk Deteksi Penyakit Tanaman Padi',
+                'jenis_kontrak'         => 1,
+                'nomor_kontrak'         => '001/LPPM/KONTRAK-PEN/I/2025',
+                'tanggal_tanda_tangan'  => '2025-01-20',
+                'jumlah_dana_disetujui' => 45000000, // Misal disetujui lebih kecil dari ajuan (50jt)
+                'tahun_anggaran'        => '2025',
+                'target_luaran'         => 'Jurnal Nasional Terakreditasi Sinta 2',
+                'file_kontrak'          => 'kontrak_penelitian_001.pdf',
+                'created_by'            => 4, // Diinput oleh Staf LPPM (User ID 4)
+                'created_at'            => $time->createFromDate(2025, 1, 20),
+                'updated_at'            => $time->createFromDate(2025, 1, 20),
+            ],
+            // Kontrak untuk Penelitian ID 3 (Smart Home)
+            [
+                'id_penelitian'         => 3,
+                'id_pengabdian'         => null,
+                'judul_artikel'         => 'Analisis Big Data untuk Model Transportasi Urban Cerdas',
+                'jenis_kontrak'         => 1,
+                'nomor_kontrak'         => '002/LPPM/KONTRAK-PEN/III/2025',
+                'tanggal_tanda_tangan'  => '2025-03-10',
+                'jumlah_dana_disetujui' => 70000000,
+                'tahun_anggaran'        => '2025',
+                'target_luaran'         => 'Prototype & HKI Hak Cipta',
+                'file_kontrak'          => 'kontrak_penelitian_002.pdf',
+                'created_by'            => 4,
+                'created_at'            => $time->createFromDate(2025, 3, 10),
+                'updated_at'            => $time->createFromDate(2025, 3, 10),
+            ],
+            // Kontrak untuk Pengabdian ID 1 (UMKM)
+            [
+                'id_penelitian'         => null,
+                'id_pengabdian'         => 1,
+                'judul_artikel'         => 'Pengembangan Framework IoT untuk Smart Home Hemat Energi',
+                'jenis_kontrak'         => 2,
+                'nomor_kontrak'         => '001/LPPM/KONTRAK-PENG/VIII/2025',
+                'tanggal_tanda_tangan'  => '2025-08-28',
+                'jumlah_dana_disetujui' => 30000000, // Sesuai ajuan
+                'tahun_anggaran'        => '2025',
+                'target_luaran'         => 'Publikasi Media Massa & Video Kegiatan',
+                'file_kontrak'          => 'kontrak_pengabdian_001.pdf',
+                'created_by'            => 4,
+                'created_at'            => $time->createFromDate(2025, 8, 28),
+                'updated_at'            => $time->createFromDate(2025, 8, 28),
+            ],
+        ];
+        $this->db->table('kontrak')->insertBatch($kontrak);
 
         echo "Seeding LPPM data finished successfully.\n";
     }
