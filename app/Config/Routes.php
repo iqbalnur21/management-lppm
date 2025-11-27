@@ -30,6 +30,12 @@ $routes->group('', ['filter' => 'isLoggedIn'], static function ($routes) {
 
     // 2. Define the generic resource route LAST
     $routes->resource('publikasi', ['controller' => 'Publikasi']);
+
+    $routes->get('kontrak/kategori/(:segment)', 'Kontrak::kategori/$1');
+    $routes->get('kontrak/custom_new/(:segment)', 'Kontrak::custom_new/$1');
+
+    // 2. Define the generic resource route LAST
+    $routes->resource('kontrak', ['controller' => 'Kontrak']);
     $routes->resource('hki', ['controller' => 'Hki']);
     $routes->resource('prototype', ['controller' => 'Prototype']);
     $routes->resource('dosen', ['controller' => 'dosen']);
