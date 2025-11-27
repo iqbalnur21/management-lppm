@@ -49,20 +49,28 @@
                             <span>Publikasi Mahasiswa</span>
                         </a>
                     </li>
+                    <?php if (session('role_id') != 1): ?>
+                        <li class="<?= $uri->getSegment(1) == 'kontrak' && $uri->getSegment(2) == '' ? 'active' : '' ?>">
+                            <a class="nav-link" href="<?= site_url('kontrak/kategori/1') ?>">Input Kontrak Penelitian</a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </li>
 
             <li class="nav-item dropdown <?= $uri->getSegment(1) == 'pengabdian' ? 'active' : '' ?>">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hands-helping"></i><span>Pengabdian</span></a>
                 <ul class="dropdown-menu">
-                    <!-- Sesuai Gambar: Daftar Surat Tugas Pengabdian -->
                     <li class="<?= $uri->getSegment(1) == 'pengabdian' && $uri->getSegment(2) == '' ? 'active' : '' ?>">
                         <a class="nav-link" href="<?= site_url('pengabdian') ?>">Daftar Surat Tugas Pengabdian</a>
                     </li>
-                    <!-- Sesuai Gambar: Publikasi Pengabdian -->
-                    <li class="<?= $uri->getSegment(1) == 'pengabdian' && $uri->getSegment(2) == 'publikasi' ? 'active' : '' ?>">
+                    <li class="<?= $uri->getSegment(1) == 'publikasi' && $uri->getSegment(2) == 'publikasi' ? 'active' : '' ?>">
                         <a class="nav-link" href="<?= site_url('publikasi/kategori/2') ?>">Publikasi Pengabdian</a>
                     </li>
+                    <?php if (session('role_id') != 1): ?>
+                        <li class="<?= $uri->getSegment(1) == 'kontrak' && $uri->getSegment(2) == 'kontrak' ? 'active' : '' ?>">
+                            <a class="nav-link" href="<?= site_url('kontrak/kategori/2') ?>">Input Kontrak Pengabdian</a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </li>
             <?php if (session('role_id') == 4): ?>
@@ -75,7 +83,6 @@
                     </ul>
                 </li>
             <?php endif ?>
-
         </ul>
     </aside>
 </div>

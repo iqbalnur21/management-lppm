@@ -2,12 +2,11 @@
 
 <?= $this->section('content') ?>
 <section class="section">
-    <?php if (session('role_id') == 1) : ?>
+    <?php if (session('role_id') == 1 || $variable == 'kontrak') : ?>
         <div class="section-header">
             <h1><?= $this->renderSection('title') ?></h1>
             <div class="section-header-button">
-                
-            <?php if ($variable == 'publikasi'): ?>
+            <?php if ($variable == 'publikasi' || $variable == 'kontrak'): ?>
                 <a href="<?= site_url($variable . '/custom_new/'. url(3)) ?>" class="btn btn-primary">Tambah</a>
             <?php else: ?>
                 <a href="<?= site_url($variable . '/new') ?>" class="btn btn-primary">Tambah</a>
